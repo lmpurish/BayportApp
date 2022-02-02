@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+      
+      <button type="button" mat-button >
+        <mat-icon aria-label="Side nav toggle icon" (click)="toggleSideBar()">menu</mat-icon>
+      </button>
+      <span>BayportApp</span>
+      <span class="spacer"></span>
+      <a  href="#">Link 1</a>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item><mat-icon aria-label="Side nav toggle icon">logout</mat-icon> Sign out</button>
+        </mat-menu>
+      
+</mat-toolbar>
