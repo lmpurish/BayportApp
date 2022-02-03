@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NewComponentComponent } from './new-component/new-component.component';
 
 
 export interface PeriodicElement {
@@ -34,7 +36,7 @@ export class ComponentComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private _liveAnnouncer: LiveAnnouncer,private dialog: MatDialog) { }
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
@@ -55,5 +57,13 @@ export class ComponentComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  onCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(NewComponentComponent, dialogConfig);
   }
 }

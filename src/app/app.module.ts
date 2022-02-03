@@ -11,6 +11,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { ComponentComponent } from './Manage/component/component.component';
+import { NewComponentComponent } from './Manage/component/new-component/new-component.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ComponentComponent } from './Manage/component/component.component';
          HeaderComponent,
          SidebarComponent,
          DefaultComponent,
-         ComponentComponent
+         ComponentComponent,
+         NewComponentComponent
     
   ],
   imports: [
