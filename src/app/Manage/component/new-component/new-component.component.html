@@ -3,8 +3,8 @@
     <h1>New Component</h1>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
-  </mat-toolbar>
-  <form  class="my-form" >
+</mat-toolbar>
+  <form   class="my-form" [formGroup]="service.formData">
 
     <mat-grid-list cols="3" rowHeight="300px">
       <mat-grid-tile>

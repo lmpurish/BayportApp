@@ -12,6 +12,11 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { ComponentComponent } from './Manage/component/component.component';
 import { NewComponentComponent } from './Manage/component/new-component/new-component.component';
+import { ComponentServiceService } from './services/component-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PositionsComponent } from './manage/positions/positions.component';
+import { PositionService } from './services/position.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +28,9 @@ import { NewComponentComponent } from './Manage/component/new-component/new-comp
          SidebarComponent,
          DefaultComponent,
          ComponentComponent,
-         NewComponentComponent
+         NewComponentComponent,
+         PositionsComponent,
+         
     
   ],
   imports: [
@@ -32,6 +39,7 @@ import { NewComponentComponent } from './Manage/component/new-component/new-comp
     AppRoutingModule,
     MaterialModule,
     CommonModule,
+    HttpClientModule,
     
     
     
@@ -40,7 +48,7 @@ import { NewComponentComponent } from './Manage/component/new-component/new-comp
   exports: [
     
   ],
-  providers: [],
+  providers: [ComponentServiceService, PositionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
