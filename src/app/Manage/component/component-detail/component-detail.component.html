@@ -1,0 +1,60 @@
+
+
+    <mat-toolbar class="toolbar-details">
+        <span class="fill-remaining-space"></span>
+        <h1> Components Details</h1>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+    </mat-toolbar>
+    <mat-grid-list cols=3>
+        <mat-grid-tile [colspan]="1">
+            <div class="component-info">
+                <mat-card >
+                    <div >
+                     <mat-card-subtitle>Component Name</mat-card-subtitle>
+                     <mat-card-title>{{componentDetail.name}}</mat-card-title>
+                    </div>
+                    <div>
+                     <mat-card-subtitle>No. Item</mat-card-subtitle>
+                     <mat-card-title>{{componentDetail.itemCode}}</mat-card-title>
+                    </div>
+                    <div>
+                     <mat-card-subtitle>Bar Code</mat-card-subtitle>
+                     <mat-card-title>{{componentDetail.barCode}}</mat-card-title>
+                    </div>
+                    <div>
+                     <mat-card-subtitle> Description</mat-card-subtitle>
+                     <mat-card-title>{{componentDetail.description}}</mat-card-title>
+                    </div>
+                </mat-card>
+            </div>
+            
+        </mat-grid-tile>
+        <mat-grid-tile>
+            
+            
+           <div class="positions">
+
+                <h2>Positions</h2>
+            <table>
+                <tr>
+                    <th>No. Rack</th>
+                    <th>Boxes</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+
+                </tr>
+                <tr *ngFor="let h of componentDetail.positions">
+                    <td>{{h.rack}}</td>
+                    <td>{{h.quantity / componentDetail.perCarton}}</td>
+                    <td>{{h.quantity}} boxes</td>
+                    <td></td>
+                </tr>
+            </table>
+            </div>
+    
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >   
+        </mat-grid-tile>  
+   

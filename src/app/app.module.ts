@@ -16,6 +16,7 @@ import { ComponentServiceService } from './services/component-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PositionsComponent } from './manage/positions/positions.component';
 import { PositionService } from './services/position.service';
+import { ComponentDetailComponent } from './Manage/component/component-detail/component-detail.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PositionService } from './services/position.service';
          ComponentComponent,
          NewComponentComponent,
          PositionsComponent,
+         ComponentDetailComponent,
          
     
   ],
@@ -46,7 +48,8 @@ import { PositionService } from './services/position.service';
 
   ],
   exports: [
-    
+    ComponentComponent,
+    PositionsComponent,
   ],
   providers: [ComponentServiceService, PositionService],
   bootstrap: [AppComponent]

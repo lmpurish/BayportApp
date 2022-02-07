@@ -9,8 +9,8 @@
 
   .controles-container > img {
     padding: 25px;
-    height: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 20%;
@@ -27,4 +27,7 @@
 
 .my-form{
     padding:20px;
+}
+.d-none{
+  display: none;
 }

@@ -4,25 +4,14 @@
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-  <form   class="my-form" [formGroup]="service.formData">
-
+  <form   class="my-form" [formGroup]="service.form" autocomplete="off">
     <mat-grid-list cols="3" rowHeight="300px">
       <mat-grid-tile>
         <div class="controles-container">
           <input type="hidden" formControlName="$key" />
-          <mat-form-field >
-            <mat-label>Type of component</mat-label>
-            <mat-select formControlName="type" required>
-              <mat-option value="0">None</mat-option>
-              <ng-container >
-                <mat-option ><Select>Cap</Select></mat-option>
-              </ng-container>
-            </mat-select>
-            <mat-error>This field is mandatory.</mat-error>
-          </mat-form-field>
           <mat-form-field>
-            <mat-label>Position</mat-label>
-            <input formControlName="amount" type="text" matInput placeholder="Position" required />
+            <mat-label>Name</mat-label>
+            <input formControlName="name" type="text" matInput placeholder="Name" required />
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
           <mat-form-field >
@@ -31,32 +20,29 @@
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Atribute</mat-label>
-            <input formControlName="amount" type="text" matInput placeholder="Atribute" required />
+            <mat-label>Item Code</mat-label>
+            <input formControlName="itemCode" type="text" matInput placeholder="Item Code" required />
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
+          
         </div>
       </mat-grid-tile>
       <mat-grid-tile>
         <div class="controles-container">
-          <mat-form-field>
-            <mat-label>Item Code</mat-label>
-            <input formControlName="amount" type="text" matInput placeholder="Item Code" required />
-            <mat-error>This field is mandatory.</mat-error>
-          </mat-form-field>
+          
           <mat-form-field>
             <mat-label>BarCode</mat-label>
-            <input formControlName="amount" type="string" matInput placeholder="BarCode" required />
+            <input formControlName="barCode" type="string" matInput placeholder="BarCode" required />
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Quantity per carton</mat-label>
-            <input formControlName="amount" type="number" matInput placeholder="Quantity per carton" required />
+            <input formControlName="perCarton" type="number" matInput placeholder="Quantity per carton" required />
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Quantity</mat-label>
-            <input formControlName="amount" type="number" matInput placeholder="Quantity" required />
+            <input formControlName="quantity" type="number" matInput placeholder="Quantity" required />
             <mat-error>This field is mandatory.</mat-error>
           </mat-form-field>
         </div>
@@ -65,8 +51,9 @@
       </mat-grid-tile>
       <mat-grid-tile>
         <div class="controles-container">
-          <input type="file" formControlName="picture" class="d-none"  #photoInput />
-          <img  id="no-image" alt="Alternate Text" (click)="photoInput.click()" />
+          <input type="file" formControlName="picture" class="d-none" (change)="onPhotoSelected($event)" #photoInput/>
+          <img [src]="showPicture() || 'assets/no-image.png'" id="no-image" alt="Alternate Text" (click)="photoInput.click()" />
+
           <div class="button-row">
             <button mat-raised-button color="primary" type="submit">Submit</button>
             <button mat-raised-button color="warn" >Clear</button>

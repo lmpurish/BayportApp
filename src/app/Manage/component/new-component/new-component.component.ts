@@ -9,6 +9,8 @@ import { ComponentServiceService } from 'src/app/services/component-service.serv
 })
 export class NewComponentComponent implements OnInit {
 
+  file: File;
+  photoSelected: any;
   constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService) { }
 
   ngOnInit(): void {
@@ -18,5 +20,18 @@ export class NewComponentComponent implements OnInit {
     this.dialogRef.close();
 
   }
+  onPhotoSelected(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+      this.file = <File>event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload = e => this.photoSelected = reader.result;
+    }
+  }
+  showPicture() {
+    if (false)
+      return "assets/"+this.service.form.get('picture')?.value
+    return this.photoSelected;
+}
 
 }

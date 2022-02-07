@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -43,7 +44,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatListModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
     
   ],
   exports: [
@@ -66,7 +68,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatListModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ]
 })
 export class MaterialModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PositionService } from 'src/app/services/position.service';
 
+
 @Component({
   selector: 'app-positions',
   templateUrl: './positions.component.html',

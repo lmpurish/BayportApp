@@ -1,0 +1,39 @@
+.card-details {
+    
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+.toolbar-details{
+    margin-bottom: 25px;
+}
+img{
+  padding: 25px;
+    height: 250px;
+    width: 250px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 20%;
+    background-size: 100% auto;
+}
+
+.component-info *{
+  box-shadow: none !important; 
+}
+
+
+table{
+  width: 100%;
+  
+}
+
+th{
+  background-color: azure;
+  padding: 15px;
+}
+
+td{
+  padding: 15px;
+  text-align: left;
+  background-color: #f2f2f2;
+}

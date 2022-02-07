@@ -6,8 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { PositionsComponent } from '../positions/positions.component';
-import { PositionService } from 'src/app/services/position.service';
+import { ComponentDetailComponent } from './component-detail/component-detail.component';
+
 
 
 @Component({
@@ -22,7 +22,7 @@ export class ComponentComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string 
-  constructor(private dialog: MatDialog, public service:ComponentServiceService, public positionService: PositionService) { }
+  constructor(private dialog: MatDialog, public service:ComponentServiceService, ) { }
   
 
   ngOnInit(): void {
@@ -46,21 +46,22 @@ export class ComponentComponent implements OnInit {
     this.dialog.open(NewComponentComponent, dialogConfig);
   }
   
-  updatePosition(component){
-    this.positionService.chargePosition(component);
+  details(id:any){
+    this.service.setComponent(id);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "30%";
-    this.dialog.open(PositionsComponent,dialogConfig);
-
+    dialogConfig.width = "60%";
+    this.dialog.open(ComponentDetailComponent, dialogConfig);
+    
   }
 
   chargeList() {
-    this.service.getComponents().subscribe(list => {
+      this.service.getComponents().subscribe(list => {
       this.dataSource = new MatTableDataSource(list as ComponentComponent[]);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      
     }
     );
   }
