@@ -18,6 +18,7 @@ export class NewComponentComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
+    this.service.form.reset();
 
   }
   onPhotoSelected(event: any): void {
@@ -32,6 +33,10 @@ export class NewComponentComponent implements OnInit {
     if (false)
       return "assets/"+this.service.form.get('picture')?.value
     return this.photoSelected;
+}
+onSubmit(){
+console.log("hola");
+
 }
 
 }

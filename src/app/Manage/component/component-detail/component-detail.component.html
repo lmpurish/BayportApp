@@ -2,7 +2,7 @@
 
     <mat-toolbar class="toolbar-details">
         <span class="fill-remaining-space"></span>
-        <h1> Components Details</h1>
+        <h1> Component Details</h1>
         <span class="fill-remaining-space"></span>
         <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
@@ -26,16 +26,15 @@
                      <mat-card-subtitle> Description</mat-card-subtitle>
                      <mat-card-title>{{componentDetail.description}}</mat-card-title>
                     </div>
+                    
                 </mat-card>
             </div>
             
         </mat-grid-tile>
         <mat-grid-tile>
-            
-            
-           <div class="positions">
-
-                <h2>Positions</h2>
+            <div class="positions">
+                <h2 >Positions</h2>
+                <h4>Total Quantity: {{quantity()}}</h4>
             <table>
                 <tr>
                     <th>No. Rack</th>
@@ -46,9 +45,9 @@
                 </tr>
                 <tr *ngFor="let h of componentDetail.positions">
                     <td>{{h.rack}}</td>
-                    <td>{{h.quantity / componentDetail.perCarton}}</td>
-                    <td>{{h.quantity}} boxes</td>
-                    <td></td>
+                    <td>{{h.perCarton}}</td>
+                    <td>{{h.quantity}} </td>
+                    <td><button mat-icon-button color="primary"><mat-icon>update</mat-icon></button></td>
                 </tr>
             </table>
             </div>

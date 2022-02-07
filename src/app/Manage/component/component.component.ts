@@ -17,7 +17,7 @@ import { ComponentDetailComponent } from './component-detail/component-detail.co
 })
 export class ComponentComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'description', 'itemCode', 'barCode', 'perCarton', 'quantity', 'actions'];
+  displayedColumns: string[] = ['name', 'description', 'itemCode', 'barCode','actions'];
   dataSource : MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -51,7 +51,7 @@ export class ComponentComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = "70%";
     this.dialog.open(ComponentDetailComponent, dialogConfig);
     
   }

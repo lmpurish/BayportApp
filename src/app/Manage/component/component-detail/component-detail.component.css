@@ -21,6 +21,12 @@ img{
   box-shadow: none !important; 
 }
 
+.positions > h2{
+  text-align: center;
+  font-size: 25px;
+  
+}
+
 
 table{
   width: 100%;

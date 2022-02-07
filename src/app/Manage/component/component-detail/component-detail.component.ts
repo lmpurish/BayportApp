@@ -40,4 +40,15 @@ export class ComponentDetailComponent implements OnInit {
     })
 
   }
+  quantity(){
+    var qty=0; 
+    if(this.componentDetail !=null){
+      for (let partial of this.componentDetail.positions){
+       qty = partial.quantity + qty;
+      }
+      return qty;
+    }
+    return 0;
+  }
+  
 }

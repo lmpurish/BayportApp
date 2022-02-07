@@ -42,18 +42,6 @@
       </th>
       <td mat-cell *matCellDef="let element"> {{element.barCode}} </td>
     </ng-container>
-    <ng-container matColumnDef="perCarton">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity of carton">
-        Quantity of Carton
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.perCarton}} </td>
-    </ng-container>
-    <ng-container matColumnDef="quantity">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by  total quantity">
-        Total Quantity
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-    </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
@@ -64,9 +52,15 @@
         <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
   </table>
   <mat-paginator [length]="100"
               [pageSize]="10"
