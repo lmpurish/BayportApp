@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IComponent } from 'src/app/Interface/IComponent';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-component',
@@ -12,7 +13,7 @@ export class NewComponentComponent implements OnInit {
 
   file: File;
   photoSelected: any;
-  constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService) { }
+  constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,21 +37,27 @@ export class NewComponentComponent implements OnInit {
     return this.photoSelected;
 }
 onSubmit(){
-if(this.service.form.valid){
-  const component: IComponent={
-    name: this.service.form.get('name').value,
-    description: this.service.form.get('description').value,
-    itemCode: this.service.form.get('itemCode').value,
-    barCode: this.service.form.get('barCode').value,
-    picture: this.file.name,
+  if(this.service.form.valid){
+    const component: IComponent={
+      name: this.service.form.get('name').value,
+      description: this.service.form.get('description').value,
+      itemCode: this.service.form.get('itemCode').value,
+      barCode: this.service.form.get('barCode').value,
+      picture: this.file.name,
+      productid: 1
+      
+    }
+   this.service.saveComponent(component).subscribe(data => {
+    this.service.uploadFile(this.file);
+    console.log('guardado exitosamente');
+    this.onSaveSuccess();
+    this.onClose();
+  });
   }
-  this.service.saveComponent(component).subscribe(data => {
-   this.service.uploadFile(this.file);
-   console.log('guardado exitosamente');
-   this.onClose();
- });
- }
 }
+onSaveSuccess() {
+    window.location.reload();
+ }
  
 
 }

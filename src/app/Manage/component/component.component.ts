@@ -17,7 +17,7 @@ import { ComponentDetailComponent } from './component-detail/component-detail.co
 })
 export class ComponentComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'description', 'itemCode', 'barCode','actions'];
+  displayedColumns: string[] = ['name', 'description','product', 'itemCode', 'barCode','actions'];
   dataSource : MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -61,9 +61,15 @@ export class ComponentComponent implements OnInit {
       this.dataSource = new MatTableDataSource(list as ComponentComponent[]);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      
     }
     );
+  }
+
+  showProduct(id:any){
+    this.service.getProduct(id).subscribe(product=>{
+      
+    });
+
   }
 
 

@@ -23,7 +23,6 @@ export class ComponentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.chargeComponent();
-    
   }
 
   onClose() {
@@ -38,7 +37,6 @@ export class ComponentDetailComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.componentDetail.positions);
       console.log("correcto");
     })
-
   }
   quantity(){
     var qty=0; 

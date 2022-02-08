@@ -4,6 +4,7 @@ import { HttpClient, HttpEventType, HttpParams } from '@angular/common/http';
 import { FormGroup, FormControl, Validator, Validators } from "@angular/forms"
 import { ComponentComponent } from '../Manage/component/component.component';
 import { Observable } from 'rxjs';
+import { IProduct } from '../Interface/IProduct';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ComponentServiceService {
   constructor(private http: HttpClient) { }
 
   private baseUR = 'https://localhost:44357/api/component';
+  private URLProduct = 'https://localhost:44357/api/Product';
 
   
   componentInUse: IComponent;
@@ -26,7 +28,9 @@ export class ComponentServiceService {
     description: new FormControl('', Validators.required),
     itemCode: new FormControl('', Validators.required),
     barCode: new FormControl('', Validators.required),
-    picture: new FormControl(''),
+    picture: new FormControl('',Validators.required),
+    product: new FormControl(''),
+
     
   });
  
@@ -60,6 +64,10 @@ export class ComponentServiceService {
           this.onUploadFinished.emit(event.body);
         }
       });
+  }
+
+  getProduct(id: any): Observable<IProduct>{
+    return this.http.get<IProduct>(this.URLProduct+'/'+id);
   }
 
   
