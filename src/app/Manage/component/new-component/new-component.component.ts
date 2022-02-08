@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { IComponent } from 'src/app/Interface/IComponent';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 
 @Component({
@@ -35,8 +36,21 @@ export class NewComponentComponent implements OnInit {
     return this.photoSelected;
 }
 onSubmit(){
-console.log("hola");
-
+if(this.service.form.valid){
+  const component: IComponent={
+    name: this.service.form.get('name').value,
+    description: this.service.form.get('description').value,
+    itemCode: this.service.form.get('itemCode').value,
+    barCode: this.service.form.get('barCode').value,
+    picture: this.file.name,
+  }
+  this.service.saveComponent(component).subscribe(data => {
+   this.service.uploadFile(this.file);
+   console.log('guardado exitosamente');
+   this.onClose();
+ });
+ }
 }
+ 
 
 }

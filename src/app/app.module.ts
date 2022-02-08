@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule} from '../app/app-routing/app-routing.module';
 import { MaterialModule } from '../app/material/material/material.module';
-import { MainNavComponent } from '../app/common/main-nav/main-nav.component';
+
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -23,7 +23,7 @@ import { ComponentDetailComponent } from './Manage/component/component-detail/co
   declarations: [
     AppComponent,
     
-    MainNavComponent,
+    
          FooterComponent,
          HeaderComponent,
          SidebarComponent,
