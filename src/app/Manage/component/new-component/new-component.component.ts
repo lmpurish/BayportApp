@@ -54,10 +54,11 @@ onSubmit(){
       itemCode: this.service.form.get('itemCode').value,
       barCode: this.service.form.get('barCode').value,
       picture: this.file.name,
-      productid: 2
+      productid: this.service.form.get('products').value,
       
     }
-   this.service.saveComponent(component).subscribe(data => {
+    console.table(component);
+    this.service.saveComponent(component).subscribe(data => {
     this.service.uploadFile(this.file);
     console.log('guardado exitosamente');
     this.onSaveSuccess();
