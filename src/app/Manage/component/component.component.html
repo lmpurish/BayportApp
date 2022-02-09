@@ -32,7 +32,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by bar code">
        Product
       </th>
-      <td mat-cell *matCellDef="let element"> Product </td>
+      <td mat-cell *matCellDef="let element">{{productMap.get(element.productId)}} </td>
     </ng-container>
     <ng-container matColumnDef="itemCode">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by # Item">

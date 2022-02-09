@@ -29,7 +29,7 @@ export class ComponentServiceService {
     itemCode: new FormControl('', Validators.required),
     barCode: new FormControl('', Validators.required),
     picture: new FormControl('',Validators.required),
-    product: new FormControl(''),
+    product: new FormControl(0),
 
     
   });
@@ -66,8 +66,8 @@ export class ComponentServiceService {
       });
   }
 
-  getProduct(id: any): Observable<IProduct>{
-    return this.http.get<IProduct>(this.URLProduct+'/'+id);
+  getProducts():Observable<any[]>{
+    return this.http.get<any>(this.URLProduct);
   }
 
   

@@ -7,6 +7,7 @@ import { NewComponentComponent } from './new-component/new-component.component';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ComponentDetailComponent } from './component-detail/component-detail.component';
+import { IProduct } from 'src/app/Interface/IProduct'; 
 
 
 
@@ -21,12 +22,16 @@ export class ComponentComponent implements OnInit {
   dataSource : MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  productMap: Map<number,string>= new Map();
+  productList:any=[];
+
   searchKey: string 
   constructor(private dialog: MatDialog, public service:ComponentServiceService, ) { }
   
 
   ngOnInit(): void {
     this.chargeList();
+    this.refresshProductMap();
   }
 
   onSearchClear() {
@@ -65,10 +70,15 @@ export class ComponentComponent implements OnInit {
     );
   }
 
-  showProduct(id:any){
-    this.service.getProduct(id).subscribe(product=>{
-      
+  refresshProductMap(){
+    this.service.getProducts().subscribe(data=>{
+    this.productList=data;
+    for(let i=0; i< data.length; i++ ){
+      this.productMap.set(this.productList[i].id, this.productList[i].name);
+    }
+    
     });
+    
 
   }
 

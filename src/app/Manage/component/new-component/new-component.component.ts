@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { IComponent } from 'src/app/Interface/IComponent';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-new-component',
@@ -13,10 +14,19 @@ export class NewComponentComponent implements OnInit {
 
   file: File;
   photoSelected: any;
-  constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService, private route: Router) { }
-
+  productList:any=[];
+  constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService, 
+    private route: Router, public notification: NotificationService) { }
+  products = [
+     {id: 1, value:"Emergency Pallete"},
+     {id: 2, value:"The Baby One Pallete"},
+     {id: 3, value:"Solar Flare"}
+  ];
   ngOnInit(): void {
+    this.refresshProductList();
   }
+
+
 
   onClose() {
     this.dialogRef.close();
@@ -44,7 +54,7 @@ onSubmit(){
       itemCode: this.service.form.get('itemCode').value,
       barCode: this.service.form.get('barCode').value,
       picture: this.file.name,
-      productid: 1
+      productid: 2
       
     }
    this.service.saveComponent(component).subscribe(data => {
@@ -57,7 +67,19 @@ onSubmit(){
 }
 onSaveSuccess() {
     window.location.reload();
+    this.notification.success("::  Submitted successfully")
  }
+
+ refresshProductList(){
+  this.service.getProducts().subscribe(data=>{
+  this.productList=data;
+  
+  });
+  
+
+}
+
+
  
 
 }
