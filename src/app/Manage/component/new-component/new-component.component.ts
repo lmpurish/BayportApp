@@ -15,13 +15,15 @@ export class NewComponentComponent implements OnInit {
   file: File;
   photoSelected: any;
   productList:any=[];
+  types = [
+    {value: 'Component'},
+    {value: 'RowMaterial'},
+    {value: 'Spendable'}
+  ];
   constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService, 
     private route: Router, public notification: NotificationService) { }
-  products = [
-     {id: 1, value:"Emergency Pallete"},
-     {id: 2, value:"The Baby One Pallete"},
-     {id: 3, value:"Solar Flare"}
-  ];
+    
+  
   ngOnInit(): void {
     this.refresshProductList();
   }
@@ -54,13 +56,14 @@ onSubmit(){
       itemCode: this.service.form.get('itemCode').value,
       barCode: this.service.form.get('barCode').value,
       picture: this.file.name,
-      productid: this.service.form.get('products').value,
+      productid: this.service.form.get('product').value,
+      type: this.service.form.get('type').value,
+      
+      
       
     }
-    console.table(component);
     this.service.saveComponent(component).subscribe(data => {
     this.service.uploadFile(this.file);
-    console.log('guardado exitosamente');
     this.onSaveSuccess();
     this.onClose();
   });

@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PositionsComponent } from './manage/positions/positions.component';
 import { PositionService } from './services/position.service';
 import { ComponentDetailComponent } from './Manage/component/component-detail/component-detail.component';
+import { CustomerComponent } from './Manage/customer/customer.component';
+import { NewCustomnerComponent } from './Manage/customer/new-customner/new-customner.component';
+
 
 
 @NgModule({
@@ -32,6 +35,9 @@ import { ComponentDetailComponent } from './Manage/component/component-detail/co
          NewComponentComponent,
          PositionsComponent,
          ComponentDetailComponent,
+         CustomerComponent,
+         NewCustomnerComponent
+        
          
     
   ],

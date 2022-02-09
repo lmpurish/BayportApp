@@ -6,10 +6,17 @@
         <span class="fill-remaining-space"></span>
         <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
     </mat-toolbar>
-    <mat-grid-list cols=3>
+    <div class="example-button-row">
+        <button mat-icon-button color="primary" aria-label="Input"><mat-icon>input</mat-icon></button>
+        <button mat-icon-button color="primary" aria-label="Output"><mat-icon>remove_circle_outline</mat-icon></button>
+        <button mat-icon-button color="primary" aria-label="returns"><mat-icon>reply</mat-icon></button>
+       
+      </div>
+    <mat-grid-list cols=3 rowHeight="400px">
         <mat-grid-tile [colspan]="1">
             <div class="component-info">
                 <mat-card >
+                    
                     <div >
                      <mat-card-subtitle>Component Name</mat-card-subtitle>
                      <mat-card-title>{{componentDetail.name}}</mat-card-title>

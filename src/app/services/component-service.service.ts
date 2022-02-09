@@ -20,8 +20,7 @@ export class ComponentServiceService {
   private baseUR = 'https://localhost:44357/api/component';
   private URLProduct = 'https://localhost:44357/api/Product';
 
-  
-  componentInUse: IComponent;
+  componentInUse: any;
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
     name: new FormControl('', Validators.required),
@@ -29,7 +28,8 @@ export class ComponentServiceService {
     itemCode: new FormControl('', Validators.required),
     barCode: new FormControl('', Validators.required),
     picture: new FormControl('',Validators.required),
-    product: new FormControl(''),
+    product: new FormControl('',Validators.required),
+    type: new FormControl('', Validators.required),
 
     
   });
@@ -38,13 +38,13 @@ export class ComponentServiceService {
     return this.http.get(this.baseUR);
   }
 
-  getComponent(id:any): Observable<IComponent>{
+  getComponent(id: number): Observable<ComponentComponent>{
     let params= new HttpParams().set('includePositions', true);
-    return this.http.get<IComponent>(this.baseUR + '/' + id, {params: params});
+    return this.http.get<ComponentComponent>(this.baseUR + '/' + id, {params: params});
   }
 
-  setComponent(Component: any){
-    this.componentInUse = Component;
+  setComponent(id: any){
+    this.componentInUse = id;
   }
   saveComponent(component: IComponent): Observable<IComponent> {
     return this.http.post<IComponent>(this.baseUR, component);

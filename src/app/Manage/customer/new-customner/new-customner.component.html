@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <h1>New Customer</h1>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form   class="my-form" [formGroup]="services.form" autocomplete="off" (ngSubmit)="onSubmit()">
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="$key" />
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" type="text" matInput placeholder="Name" required />
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <mat-label>Contact</mat-label>
+            <textarea matInput type='text' formControlName="contact" required></textarea>
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <button mat-raised-button color="warn" type="reset" >Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      
+    </mat-grid-list>
+
+
+
+  </form>

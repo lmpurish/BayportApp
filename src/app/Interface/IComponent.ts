@@ -6,6 +6,8 @@ export class IComponent{
     itemCode: string;
     barCode: string;
     productid: number;
+    type: string;
+    
 
    
    

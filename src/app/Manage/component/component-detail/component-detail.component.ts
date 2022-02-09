@@ -4,6 +4,8 @@ import { ComponentServiceService } from 'src/app/services/component-service.serv
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ComponentComponent } from '../component.component';
+import { IComponent } from 'src/app/Interface/IComponent';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class ComponentDetailComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, public services: ComponentServiceService) { }
 
-  componentDetail: any;
+  componentDetail: any | undefined;
   displayedColumns: string[] = ['rack', 'boxes', 'quantity', 'actions'];
   dataSource : MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
@@ -27,7 +29,7 @@ export class ComponentDetailComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
-    console.table(this.services.componentInUse);
+    
 
   }
 
@@ -35,7 +37,7 @@ export class ComponentDetailComponent implements OnInit {
     this.services.getComponent(this.services.componentInUse).subscribe(data=> {
       this.componentDetail = data;
       this.dataSource = new MatTableDataSource(this.componentDetail.positions);
-      console.log("correcto");
+      
     })
   }
   quantity(){
