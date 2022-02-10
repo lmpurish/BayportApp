@@ -58,9 +58,6 @@ onSubmit(){
       picture: this.file.name,
       productid: this.service.form.get('product').value,
       type: this.service.form.get('type').value,
-      
-      
-      
     }
     this.service.saveComponent(component).subscribe(data => {
     this.service.uploadFile(this.file);

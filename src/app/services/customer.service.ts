@@ -31,8 +31,8 @@ export class CustomerService {
 
   }
 
-  getCustomers(){
-    return this.http.get(this.baseURL);
+  getCustomers():Observable<any[]>{
+    return this.http.get<any>(this.baseURL);
   }
 
   saveCustomer(customer: ICustomer){

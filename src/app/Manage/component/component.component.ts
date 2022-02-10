@@ -8,6 +8,8 @@ import { ComponentServiceService } from 'src/app/services/component-service.serv
 import { MatPaginator } from '@angular/material/paginator';
 import { ComponentDetailComponent } from './component-detail/component-detail.component';
 import { IProduct } from 'src/app/Interface/IProduct'; 
+import { NotificationService } from 'src/app/services/notification.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 
 
@@ -26,7 +28,7 @@ export class ComponentComponent implements OnInit {
   productList:any=[];
 
   searchKey: string 
-  constructor(private dialog: MatDialog, public service:ComponentServiceService, ) { }
+  constructor(private dialog: MatDialog, public service:ComponentServiceService, private dialogService: DialogService,private notification: NotificationService ) { }
   
 
   ngOnInit(): void {
@@ -80,10 +82,19 @@ export class ComponentComponent implements OnInit {
     }
     
     });
-    
-
   }
 
+  onDelete(id: string){
+    this.dialogService.openConfirmDialog("Are you sure to delete this record? Remember it will remove your dependencie!!")
+    .afterClosed().subscribe(res=>{
+      if(res){
+        this.service.deleteComponent(id).subscribe(action=>{
+          this.notification.warn(':: Delete successfully');
+          this.chargeList();
+        })
+      }
+    })
+  }
 
 
 }

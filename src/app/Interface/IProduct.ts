@@ -3,4 +3,5 @@ export class IProduct{
     name: string;
     description: string;
     itemCode: string;
+    projectId: number;
 }

@@ -54,7 +54,7 @@
           <mat-icon>location_on</mat-icon>
         </button>
         <button mat-icon-button ><mat-icon>launch</mat-icon></button>
-        <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="onDelete(element.id)"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </ng-container>
     <ng-container matColumnDef="loading">

@@ -22,6 +22,8 @@ import { NewCustomnerComponent } from './Manage/customer/new-customner/new-custo
 import { ProductComponent } from './Manage/product/product.component';
 import { ProjectComponent } from './Manage/project/project.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import { NewProjectComponent } from './manage/project/new-project/new-project.component';
+import { NewProductComponent } from './manage/product/new-product/new-product.component';
 
 
 
@@ -45,7 +47,9 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
          NewCustomnerComponent,
          ProductComponent,
          ProjectComponent,
-         MatConfirmDialogComponent
+         MatConfirmDialogComponent,
+         NewProjectComponent,
+         NewProductComponent
       
          
          

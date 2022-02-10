@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort, Sort} from '@angular/material/sort';
+import { MatTableDataSource} from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { NewCustomnerComponent } from './new-customner/new-customner.component';
@@ -62,7 +62,7 @@ export class CustomerComponent implements OnInit {
   }
 
   onDelete(id:any){
-    this.dialogService.openConfirmDialog("Are you sure to delete this record?")
+    this.dialogService.openConfirmDialog("Are you sure to delete this record? Remember it will remove your dependencie!!")
     .afterClosed().subscribe(res=>{
       if(res){
         this.services.deleteCustomer(id).subscribe(action=>{
@@ -74,8 +74,7 @@ export class CustomerComponent implements OnInit {
 
   }
 
-
-
+  
   onSearchClear() {
     this.searchKey = "";
     this.applyFilter();

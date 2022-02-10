@@ -69,6 +69,11 @@ export class ComponentServiceService {
   getProducts():Observable<any[]>{
     return this.http.get<any>(this.URLProduct);
   }
+  
+  deleteComponent(id: any):Observable<IComponent>{
+    return this.http.delete<IComponent>(this.baseUR+'/'+id);
+  }
+
 
   
 
