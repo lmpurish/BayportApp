@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { NewCustomnerComponent } from './new-customner/new-customner.component';
 import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 
@@ -22,7 +23,7 @@ export class CustomerComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string 
 
-  constructor(public services: CustomerService, public dialog: MatDialog, public dialogService: DialogService) { }
+  constructor(public services: CustomerService, public dialog: MatDialog, public dialogService: DialogService, public notification:NotificationService) { }
 
   ngOnInit(): void {
     this.chargeList();
@@ -60,8 +61,16 @@ export class CustomerComponent implements OnInit {
     this.dialog.open(NewCustomnerComponent, dialogConfig);
   }
 
-  onDelete(row:any){
-    this.dialogService.openConfirmDialog("Are you sure to delete this record?");
+  onDelete(id:any){
+    this.dialogService.openConfirmDialog("Are you sure to delete this record?")
+    .afterClosed().subscribe(res=>{
+      if(res){
+        this.services.deleteCustomer(id).subscribe(action=>{
+          this.notification.warn(':: Delete successfully');
+          this.chargeList();
+        })
+      }
+    })
 
   }
 

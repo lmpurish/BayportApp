@@ -42,6 +42,9 @@ export class CustomerService {
   updateCustomer(customer: ICustomer):Observable<ICustomer>{
     return this.http.put<ICustomer>(this.baseURL+'/'+ customer._id.toString() ,customer);
   }
+  deleteCustomer(id: any):Observable<ICustomer>{
+    return this.http.delete<ICustomer>(this.baseURL+'/'+id);
+  }
 
 
 }
