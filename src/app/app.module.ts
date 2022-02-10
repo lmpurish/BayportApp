@@ -19,6 +19,12 @@ import { PositionService } from './services/position.service';
 import { ComponentDetailComponent } from './Manage/component/component-detail/component-detail.component';
 import { CustomerComponent } from './Manage/customer/customer.component';
 import { NewCustomnerComponent } from './Manage/customer/new-customner/new-customner.component';
+import { ProductComponent } from './Manage/product/product.component';
+import { ProjectComponent } from './Manage/project/project.component';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+
+
+
 
 
 
@@ -36,8 +42,12 @@ import { NewCustomnerComponent } from './Manage/customer/new-customner/new-custo
          PositionsComponent,
          ComponentDetailComponent,
          CustomerComponent,
-         NewCustomnerComponent
-        
+         NewCustomnerComponent,
+         ProductComponent,
+         ProjectComponent,
+         MatConfirmDialogComponent
+      
+         
          
     
   ],
@@ -54,10 +64,10 @@ import { NewCustomnerComponent } from './Manage/customer/new-customner/new-custo
 
   ],
   exports: [
-    ComponentComponent,
-    PositionsComponent,
+    
   ],
   providers: [ComponentServiceService, PositionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule { }

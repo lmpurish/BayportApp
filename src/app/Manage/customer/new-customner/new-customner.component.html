@@ -1,6 +1,6 @@
 <mat-toolbar>
     <span class="fill-remaining-space"></span>
-    <h1>New Customer</h1>
+    <h1>{{services.editMode ? 'Modify Customer' : 'New Customer'}}</h1>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>

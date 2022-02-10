@@ -22,25 +22,42 @@ export class NewCustomnerComponent implements OnInit {
   onClose(){
     this.dialogRef.close();
     this.services.form.reset();
+    this.services.editMode=false;
   }
 
   onSubmit(){
     if(this.services.form.valid){
-      const component: ICustomer={
+
+      if(this.services.editMode){
+        const customer: ICustomer={
+          _id:this.services.form.get('$key').value,
+          name: this.services.form.get('name').value,
+          contact: this.services.form.get('contact').value,
+        }
+        this.services.updateCustomer(customer).subscribe(data=>{
+          this.services.editMode= false;
+          this.onSaveSuccess(":: Modify successfully");
+          this.onClose();
+        })
+
+      }
+    else{
+      const customer: ICustomer={
         name: this.services.form.get('name').value,
         contact: this.services.form.get('contact').value,
       }
-      this.services.saveCustomer(component).subscribe(data => {
-      this.onSaveSuccess();
+      this.services.saveCustomer(customer).subscribe(data => {
+      this.onSaveSuccess(':: Submitted successfully');
       this.onClose();
     });
     }
+      
+    }
   }
 
-  onSaveSuccess(){
+  onSaveSuccess(msg:any){
+    this.notification.success(msg);
     window.location.reload();
-    this.notification.success(':: Submitted successfully');
-
   }
 
 }
