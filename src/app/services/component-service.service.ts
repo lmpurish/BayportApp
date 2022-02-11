@@ -40,7 +40,7 @@ export class ComponentServiceService {
 
   getComponent(id: number): Observable<any>{
     let params= new HttpParams().set('includePositions', true);
-    return this.http.get<ComponentComponent>(this.baseUR + '/' + id, {params: params});
+    return this.http.get<any>(this.baseUR + '/' + id, {params: params});
   }
 
   setComponent(id: any){

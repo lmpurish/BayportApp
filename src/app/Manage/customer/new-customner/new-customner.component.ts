@@ -1,19 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatDialogRef } from '@angular/material/dialog';
-
-import { ComponentServiceService } from 'src/app/services/component-service.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ICustomer } from 'src/app/Interface/ICustomer';
 import { CustomerComponent } from '../customer.component';
+import { ComponentComponent } from '../../component/component.component';
 
 @Component({
   selector: 'app-new-customner',
   templateUrl: './new-customner.component.html',
   styleUrls: ['./new-customner.component.css']
 })
-export class NewCustomnerComponent implements OnInit {
+export class NewCustomnerComponent implements OnInit{
 
   @ViewChild(CustomerComponent) child: CustomerComponent;
   constructor(public services: CustomerService,public dialogRef: MatDialogRef<NewCustomnerComponent>, public notification: NotificationService) { }
@@ -21,6 +19,7 @@ export class NewCustomnerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ 
   onClose(){
     this.dialogRef.close();
     this.services.form.reset();
@@ -52,6 +51,7 @@ export class NewCustomnerComponent implements OnInit {
       this.onSaveSuccess(':: Submitted successfully');
       this.onClose();
     });
+      this.child.chargeList();
     }
       
     }
@@ -59,7 +59,6 @@ export class NewCustomnerComponent implements OnInit {
 
   onSaveSuccess(msg:any){
     this.notification.success(msg);
-    this.child.chargeList();
     this.onClose();
   }
 

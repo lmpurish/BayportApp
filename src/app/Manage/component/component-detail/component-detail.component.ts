@@ -7,6 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ComponentComponent } from '../component.component';
 import { IComponent } from 'src/app/Interface/IComponent';
 import { MoventComponent } from 'src/app/layouts/movent/movent.component';
+import { PositionsComponent } from '../../positions/positions.component';
+import { Position } from 'src/app/Interface/position';
 
 
 @Component({
@@ -18,9 +20,10 @@ export class ComponentDetailComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, private dialog: MatDialog,public services: ComponentServiceService) { }
 
-  componentDetail: any | undefined;
+  componentDetail: IComponent=new IComponent;
   displayedColumns: string[] = ['rack', 'boxes', 'quantity', 'actions'];
-  dataSource : MatTableDataSource<any>;
+  dataSource : MatTableDataSource<Position>;
+  
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -44,6 +47,7 @@ export class ComponentDetailComponent implements OnInit {
   chargeComponent(){
     this.services.getComponent(this.services.componentInUse).subscribe(data=> {
       this.componentDetail = data;
+      console.log(this.componentDetail.positions)
       this.dataSource = new MatTableDataSource(this.componentDetail.positions);
       
     })

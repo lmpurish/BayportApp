@@ -18,10 +18,12 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class CustomerComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'contact','actions'];
-  dataSource : MatTableDataSource<any>;
+  dataSource : MatTableDataSource<CustomerComponent>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string 
+
+  childData: "mi prueba";
 
   constructor(public services: CustomerService, public dialog: MatDialog, public dialogService: DialogService, public notification:NotificationService) { }
 
@@ -36,6 +38,7 @@ export class CustomerComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })
+    return 1;
 
    
 
@@ -83,6 +86,8 @@ export class CustomerComponent implements OnInit {
   applyFilter() {
     this.dataSource.filter = this.searchKey.trim().toLowerCase();
   }
+
+  
 
 
 }

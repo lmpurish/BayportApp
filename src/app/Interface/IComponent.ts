@@ -1,3 +1,5 @@
+import { Position } from "./position";
+
 export class IComponent{
     _id?: number;
     name: string;
@@ -7,6 +9,7 @@ export class IComponent{
     barCode: string;
     productid: number;
     type: string;
+    positions?: Position[]
     
 
    
