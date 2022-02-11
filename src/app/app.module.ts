@@ -24,6 +24,7 @@ import { ProjectComponent } from './Manage/project/project.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { NewProjectComponent } from './manage/project/new-project/new-project.component';
 import { NewProductComponent } from './manage/product/new-product/new-product.component';
+import { MoventComponent } from './layouts/movent/movent.component';
 
 
 
@@ -49,7 +50,8 @@ import { NewProductComponent } from './manage/product/new-product/new-product.co
          ProjectComponent,
          MatConfirmDialogComponent,
          NewProjectComponent,
-         NewProductComponent
+         NewProductComponent,
+         MoventComponent
       
          
          

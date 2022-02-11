@@ -1,8 +1,10 @@
 
 export class Position{
-    id: number;
+    _id?: number;
     rack: string;
     inUse: boolean;
     quantity: number;
+    perCarton: number;
+    componentId: number;
 
 }

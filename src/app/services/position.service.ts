@@ -37,9 +37,10 @@ export class PositionService {
     this.componentId = row.comoponentId;
   }
 
-  saveProduct(position: Position): Observable<Position> {
+  savePosition(position: Position) {
     return this.http.post<Position>(this.url, position);
   }
+  
 
 
 }

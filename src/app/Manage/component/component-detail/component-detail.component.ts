@@ -1,11 +1,12 @@
 import { Component, OnInit,ViewChild,  } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ComponentComponent } from '../component.component';
 import { IComponent } from 'src/app/Interface/IComponent';
+import { MoventComponent } from 'src/app/layouts/movent/movent.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { IComponent } from 'src/app/Interface/IComponent';
 })
 export class ComponentDetailComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, public services: ComponentServiceService) { }
+  constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, private dialog: MatDialog,public services: ComponentServiceService) { }
 
   componentDetail: any | undefined;
   displayedColumns: string[] = ['rack', 'boxes', 'quantity', 'actions'];
@@ -29,8 +30,15 @@ export class ComponentDetailComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
-    
+  }
 
+  movent(action: string){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    dialogConfig.height= "50%";
+    this.dialog.open(MoventComponent, dialogConfig);
   }
 
   chargeComponent(){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -6,6 +6,7 @@ import { ComponentServiceService } from 'src/app/services/component-service.serv
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ICustomer } from 'src/app/Interface/ICustomer';
+import { CustomerComponent } from '../customer.component';
 
 @Component({
   selector: 'app-new-customner',
@@ -14,6 +15,7 @@ import { ICustomer } from 'src/app/Interface/ICustomer';
 })
 export class NewCustomnerComponent implements OnInit {
 
+  @ViewChild(CustomerComponent) child: CustomerComponent;
   constructor(public services: CustomerService,public dialogRef: MatDialogRef<NewCustomnerComponent>, public notification: NotificationService) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class NewCustomnerComponent implements OnInit {
         this.services.updateCustomer(customer).subscribe(data=>{
           this.services.editMode= false;
           this.onSaveSuccess(":: Modify successfully");
-          this.onClose();
+         
         })
 
       }
@@ -57,7 +59,8 @@ export class NewCustomnerComponent implements OnInit {
 
   onSaveSuccess(msg:any){
     this.notification.success(msg);
-    window.location.reload();
+    this.child.chargeList();
+    this.onClose();
   }
 
 }
