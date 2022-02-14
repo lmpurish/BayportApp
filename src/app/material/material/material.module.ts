@@ -18,6 +18,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule, MatSnackBarConfig } from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -48,6 +50,10 @@ import { MatSnackBarModule, MatSnackBarConfig } from '@angular/material/snack-ba
     ReactiveFormsModule,
     MatCardModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    
+    
     
     
   ],
@@ -74,6 +80,7 @@ import { MatSnackBarModule, MatSnackBarConfig } from '@angular/material/snack-ba
     ReactiveFormsModule,
     MatCardModule,
     MatSnackBarModule,
+    MatDatepickerModule
     
   ]
 })

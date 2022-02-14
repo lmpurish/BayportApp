@@ -8,8 +8,8 @@
     </mat-toolbar>
     <div class="example-button-row">
         <button mat-icon-button color="primary" aria-label="Input" (click)="movent('input')" ><mat-icon>input</mat-icon></button>
-        <button mat-icon-button color="primary" aria-label="Output"><mat-icon>remove_circle_outline</mat-icon></button>
-        <button mat-icon-button color="primary" aria-label="returns"><mat-icon>reply</mat-icon></button>
+        <button mat-icon-button color="primary" aria-label="Output"(click)="movent('output')"><mat-icon>remove_from_queue</mat-icon></button>
+        <button mat-icon-button color="primary" aria-label="returns" (click)="movent('returns')"><mat-icon>reply</mat-icon></button>
        
       </div>
     <mat-grid-list cols=3 rowHeight="400px">
@@ -61,6 +61,5 @@
     
         </mat-grid-tile>
         <mat-grid-tile>
-            <img mat-card-xl-image src="https://localhost:44357/api/Component/getPhoto/{{componentDetail.picture}}" >   
+            <img mat-card-xl-image src="https://localhost:44357/api/Component/getPhoto/{{picture}}" >   
         </mat-grid-tile>  
-    -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { dateFormat } from 'highcharts';
 import { IMovent } from 'src/app/Interface/IMovent';
 import { Position } from 'src/app/Interface/position';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
@@ -15,7 +16,7 @@ import { PositionService } from 'src/app/services/position.service';
 export class MoventComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<MoventComponent>,private notification: NotificationService, public services: MoventService, public positionServices: PositionService, public componentServices: ComponentServiceService) { }
-
+  
   ngOnInit(): void {
   }
 
@@ -25,12 +26,17 @@ export class MoventComponent implements OnInit {
 
   onSubmit(){
     if(this.services.form.valid){
+
+      
       const movent: IMovent={
         action: "Input",
         componentId: this.componentServices.componentInUse,
-        date: new Date(),
+        date: '2022-02-13T03:37:57.948Z',
         quantity: this.services.form.get('quantity').value,
+        
       }
+      
+      
       const position: Position={
         rack: this.services.form.get('position').value,
         quantity: this.services.form.get('quantity').value,
@@ -47,6 +53,14 @@ export class MoventComponent implements OnInit {
 
 
     }
+
+ 
+
+    
+  }
+  inputEvent($event){
+    console.log(event);
+
   }
 
 }

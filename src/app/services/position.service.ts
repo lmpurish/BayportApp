@@ -20,6 +20,7 @@ export class PositionService {
     rack: new FormControl('', Validators.required),
     inUse: new FormControl(true, Validators.required),
     quantity: new FormControl(0, Validators.required),
+    fecha: new FormControl(),
     
   })
 

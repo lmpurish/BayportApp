@@ -1,7 +1,7 @@
 export class IMovent{
     _id?:number;
     action: string;
-    date: Date;
+    date: string;
     quantity: number;
     componentId: number;
 }

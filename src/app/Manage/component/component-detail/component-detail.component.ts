@@ -23,6 +23,8 @@ export class ComponentDetailComponent implements OnInit {
   componentDetail: IComponent=new IComponent;
   displayedColumns: string[] = ['rack', 'boxes', 'quantity', 'actions'];
   dataSource : MatTableDataSource<Position>;
+  listPositions: Position[]=[];
+  picture: string="";
   
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,16 +49,17 @@ export class ComponentDetailComponent implements OnInit {
   chargeComponent(){
     this.services.getComponent(this.services.componentInUse).subscribe(data=> {
       this.componentDetail = data;
-      console.log(this.componentDetail.positions)
-      this.dataSource = new MatTableDataSource(this.componentDetail.positions);
+      this.picture= data.picture;
+      this.listPositions = data.positions
+      this.dataSource = new MatTableDataSource(this.listPositions);
       
     })
   }
   quantity(){
     var qty=0; 
     if(this.componentDetail !=null){
-      for (let partial of this.componentDetail.positions){
-       qty = partial.quantity + qty;
+      for(let i=0; i< this.listPositions.length; i++ ){
+        qty+= this.listPositions[i].quantity;
       }
       return qty;
     }
