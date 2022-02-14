@@ -1,66 +1,51 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { dateFormat } from 'highcharts';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IMovent } from 'src/app/Interface/IMovent';
-import { Position } from 'src/app/Interface/position';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { MoventService } from 'src/app/services/movent.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { PositionService } from 'src/app/services/position.service';
 
 @Component({
   selector: 'app-movent',
   templateUrl: './movent.component.html',
-  styleUrls: ['./movent.component.css']
+  styleUrls: ['./movent.component.css'],
+  providers: [DatePipe]
 })
 export class MoventComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<MoventComponent>,private notification: NotificationService, public services: MoventService, public positionServices: PositionService, public componentServices: ComponentServiceService) { }
-  
+  options: FormGroup;
+  hideRequiredControl = new FormControl(false);
+  floatLabelControl = new FormControl('auto');
+  date = new Date();
+
+  constructor(private datePipe: DatePipe, public dialogRef: MatDialogRef<MoventComponent>,public services: PositionService,public moventServices: MoventService,private fb: FormBuilder, public componentServices: ComponentServiceService) { }
+
   ngOnInit(): void {
   }
-
-  onClose(){
+  onClose() {
     this.dialogRef.close();
   }
 
   onSubmit(){
-    if(this.services.form.valid){
-
-      
-      const movent: IMovent={
-        action: "Input",
-        componentId: this.componentServices.componentInUse,
-        date: '2022-02-13T03:37:57.948Z',
-        quantity: this.services.form.get('quantity').value,
-        
-      }
-      
-      
-      const position: Position={
-        rack: this.services.form.get('position').value,
-        quantity: this.services.form.get('quantity').value,
-        inUse: true,
-        perCarton:this.services.form.get('perCarton').value,
-        componentId: this.componentServices.componentInUse
-      }
-      this.services.saveMovent(movent).subscribe(data=>{})
-      this.positionServices.savePosition(position).subscribe(data=>{
-        this.notification.success(":: Input Successfully")
-        this.onClose();
-      });
-      
-
-
+    const movent: IMovent={
+      action: this.services.formMovent.get('action').value,
+      quantity: this.services.formMovent.get('quantity').value,
+      date: this.datePipe.transform(this.date, 'yyyy-MM-dd'),
+      componentId: this.componentServices.componentInUse,
     }
 
+    this.moventServices.saveMovent(movent).subscribe(date=>{
+      this.onClose();
+    })
+    
+    console.log(movent)
+
+
+  }
+ 
  
 
-    
-  }
-  inputEvent($event){
-    console.log(event);
-
-  }
-
 }
+

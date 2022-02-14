@@ -1,5 +1,5 @@
 export class IMovent{
-    _id?:number;
+    _id?: number;
     action: string;
     date: string;
     quantity: number;

@@ -6,9 +6,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ComponentComponent } from '../component.component';
 import { IComponent } from 'src/app/Interface/IComponent';
-import { MoventComponent } from 'src/app/layouts/movent/movent.component';
-import { PositionsComponent } from '../../positions/positions.component';
 import { Position } from 'src/app/Interface/position';
+import { MoventComponent } from 'src/app/layouts/movent/movent.component';
+
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ComponentDetailComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, private dialog: MatDialog,public services: ComponentServiceService) { }
 
   componentDetail: IComponent=new IComponent;
-  displayedColumns: string[] = ['rack', 'boxes', 'quantity', 'actions'];
+  displayedColumns: string[] = ['rack', 'boxes', 'quantity', ];
   dataSource : MatTableDataSource<Position>;
   listPositions: Position[]=[];
   picture: string="";
@@ -37,12 +37,12 @@ export class ComponentDetailComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  movent(action: string){
+  movent(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "50%";
-    dialogConfig.height= "50%";
+    dialogConfig.width = "70%";
+    dialogConfig.height= "70%";
     this.dialog.open(MoventComponent, dialogConfig);
   }
 
@@ -52,6 +52,8 @@ export class ComponentDetailComponent implements OnInit {
       this.picture= data.picture;
       this.listPositions = data.positions
       this.dataSource = new MatTableDataSource(this.listPositions);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
       
     })
   }
@@ -65,5 +67,8 @@ export class ComponentDetailComponent implements OnInit {
     }
     return 0;
   }
+
+  
+  
   
 }

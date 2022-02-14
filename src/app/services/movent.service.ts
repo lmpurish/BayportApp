@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { IMovent } from '../Interface/IMovent';
+
 
 
 @Injectable({
@@ -9,19 +11,12 @@ import { IMovent } from '../Interface/IMovent';
 })
 export class MoventService {
 
-  private url = 'https://localhost:44357/api/movent'
+  private url = "https://localhost:44357/api/Movent"
 
   constructor(public http: HttpClient) { }
 
-  form: FormGroup = new FormGroup({
-    $key: new FormControl(null),
-    quantity: new FormControl(' ', Validators.required),
-    perCarton: new FormControl('', Validators.required),
-    position: new FormControl('', Validators.required),
-  });
-
   saveMovent(movent: IMovent){
-    return this.http.post<IMovent>(this.url, IMovent);
+    return this.http.post<IMovent>(this.url, movent);
   }
 
 }

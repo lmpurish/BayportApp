@@ -15,20 +15,18 @@ export class PositionService {
   componentId: number;
   private url = 'https://localhost:44357/api/position'
 
-  form: FormGroup= new FormGroup({
+  formMovent: FormGroup= new FormGroup({
     $Key: new FormControl(null),
+    action: new FormControl('', Validators.required),
     rack: new FormControl('', Validators.required),
-    inUse: new FormControl(true, Validators.required),
     quantity: new FormControl(0, Validators.required),
-    fecha: new FormControl(),
-    
   })
 
   initializeFormGroup() {
-    this.form.setValue({
+    this.formMovent.setValue({
       $key: new FormControl(null),
       rack: '',
-      inUse: true,
+      action: true,
       quantity: 0,
       comoponentId: this.componentId
     });

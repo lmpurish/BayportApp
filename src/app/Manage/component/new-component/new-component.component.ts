@@ -67,7 +67,7 @@ onSubmit(){
   }
 }
 onSaveSuccess() {
-    window.location.reload();
+  //  window.location.reload();
     this.notification.success("::  Submitted successfully")
  }
 

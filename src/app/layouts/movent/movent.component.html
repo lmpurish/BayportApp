@@ -1,46 +1,51 @@
-<mat-toolbar class="toolbar-details">
+<mat-toolbar>
     <span class="fill-remaining-space"></span>
-    <h1> Input Component <!-- {{ hoy | date : 'dd-MM-yyyy'}} --></h1>
+    <h1>Movent of Component</h1>
+    
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<form   class="my-form" [formGroup]="services.form" autocomplete="off" (ngSubmit)="onSubmit()">
+<div class="example-container">
     <mat-grid-list cols="1" rowHeight="300px">
-      <mat-grid-tile>
-        <div class="controles-container">
-          <input type="hidden" formControlName="$key" />
-          <mat-form-field>
-            <mat-label>Quantity input</mat-label>
-            <input formControlName="quantity" type="number" matInput placeholder="Quantity" required />
-            <mat-error>This field is mandatory.</mat-error>
-          </mat-form-field>
-          <mat-form-field >
-            <mat-label>Amount Boxes</mat-label>
-            <textarea matInput type='number' formControlName="perCarton" required></textarea>
-            <mat-error>This field is mandatory.</mat-error>
-          </mat-form-field>
-          <mat-form-field >
-            <mat-label>Rack</mat-label>
-            <textarea matInput type='text' formControlName="position" required></textarea>
-            <mat-error>This field is mandatory.</mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" (dateInput)="inputEvent($event)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+        <mat-grid-tile>
+            <form [formGroup]="services.formMovent" autocomplete="off" (ngSubmit)="onSubmit()">
+                <div>
+                  <label>Actions: </label>
+                  <mat-radio-group [formControl]="floatLabelControl" formControlName="action" required>
+                    <mat-radio-button value="input">Input</mat-radio-button>
+                    <mat-radio-button value="output">Output</mat-radio-button>
+                    <mat-radio-button value="returns">Returns</mat-radio-button>
+                  </mat-radio-group>
+                </div>
 
-          
-          <div class="button-row">
-            <button mat-raised-button color="primary" type="submit">Submit</button>
-            <button mat-raised-button color="warn" type="reset" >Clear</button>
-          </div>
-        </div>
-      </mat-grid-tile>
-      
-    </mat-grid-list>
-
-    
-
-  </form>
+                <div>
+                    <mat-form-field 
+                    [hideRequiredMarker]="hideRequiredControl.value"
+                    [floatLabel]="floatLabelControl.value">
+                  <input matInput placeholder="Total quantity" required formControlName="quantity">
+                </mat-form-field>
+                </div>
+            
+                <mat-form-field 
+                    [hideRequiredMarker]="hideRequiredControl.value"
+                    [floatLabel]="floatLabelControl.value">
+                  <input matInput placeholder="Rack" required>
+                </mat-form-field>
+            
+                <mat-form-field  [floatLabel]="floatLabelControl.value">
+                  <input matInput placeholder="Quantity">
+                </mat-form-field>
+                <mat-form-field  [floatLabel]="floatLabelControl.value">
+                  <input matInput placeholder="Boxes">
+                </mat-form-field>
+                <button mat-mini-fab aria-label="Example icon button with a home icon" class="myButton">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                    <button mat-raised-button color="warn" type="reset" >Clear</button>
+                  </div>
+            </form>
+        </mat-grid-tile>
+     </mat-grid-list>
+</div>

@@ -20,6 +20,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule, MatSnackBarConfig } from '@angular/material/snack-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 
@@ -52,6 +54,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule, 
+    MatRadioModule
     
     
     
@@ -80,7 +83,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatCardModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatRadioModule
     
   ]
 })

@@ -14,7 +14,7 @@ import { ComponentComponent } from './Manage/component/component.component';
 import { NewComponentComponent } from './Manage/component/new-component/new-component.component';
 import { ComponentServiceService } from './services/component-service.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PositionsComponent } from './manage/positions/positions.component';
+
 import { PositionService } from './services/position.service';
 import { ComponentDetailComponent } from './Manage/component/component-detail/component-detail.component';
 import { CustomerComponent } from './Manage/customer/customer.component';
@@ -25,6 +25,8 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 import { NewProjectComponent } from './manage/project/new-project/new-project.component';
 import { NewProductComponent } from './manage/product/new-product/new-product.component';
 import { MoventComponent } from './layouts/movent/movent.component';
+
+
 
 
 
@@ -42,7 +44,7 @@ import { MoventComponent } from './layouts/movent/movent.component';
          DefaultComponent,
          ComponentComponent,
          NewComponentComponent,
-         PositionsComponent,
+       
          ComponentDetailComponent,
          CustomerComponent,
          NewCustomnerComponent,
@@ -51,7 +53,8 @@ import { MoventComponent } from './layouts/movent/movent.component';
          MatConfirmDialogComponent,
          NewProjectComponent,
          NewProductComponent,
-         MoventComponent
+         MoventComponent,
+   
       
          
          
