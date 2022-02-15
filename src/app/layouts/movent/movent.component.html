@@ -1,51 +1,55 @@
 <mat-toolbar>
-    <span class="fill-remaining-space"></span>
-    <h1>Movent of Component</h1>
-    
-    <span class="fill-remaining-space"></span>
-    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  <span class="fill-remaining-space"></span>
+  <h1>Movent of Component</h1>
+
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
 </mat-toolbar>
 <div class="example-container">
-    <mat-grid-list cols="1" rowHeight="300px">
-        <mat-grid-tile>
-            <form [formGroup]="services.formMovent" autocomplete="off" (ngSubmit)="onSubmit()">
-                <div>
-                  <label>Actions: </label>
-                  <mat-radio-group [formControl]="floatLabelControl" formControlName="action" required>
-                    <mat-radio-button value="input">Input</mat-radio-button>
-                    <mat-radio-button value="output">Output</mat-radio-button>
-                    <mat-radio-button value="returns">Returns</mat-radio-button>
-                  </mat-radio-group>
-                </div>
 
-                <div>
-                    <mat-form-field 
-                    [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value">
-                  <input matInput placeholder="Total quantity" required formControlName="quantity">
-                </mat-form-field>
-                </div>
-            
-                <mat-form-field 
-                    [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value">
-                  <input matInput placeholder="Rack" required>
-                </mat-form-field>
-            
-                <mat-form-field  [floatLabel]="floatLabelControl.value">
-                  <input matInput placeholder="Quantity">
-                </mat-form-field>
-                <mat-form-field  [floatLabel]="floatLabelControl.value">
-                  <input matInput placeholder="Boxes">
-                </mat-form-field>
-                <button mat-mini-fab aria-label="Example icon button with a home icon" class="myButton">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                <div class="button-row">
-                    <button mat-raised-button color="primary" type="submit">Submit</button>
-                    <button mat-raised-button color="warn" type="reset" >Clear</button>
-                  </div>
-            </form>
-        </mat-grid-tile>
-     </mat-grid-list>
+<div class="controles-cointainer">
+
+</div>
+  <form [formGroup]="services.formMovent" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div >
+      <label>Actions: </label>
+      <mat-radio-group [formControl]="floatLabelControl" formControlName="action" required>
+        <mat-radio-button value="input">Input</mat-radio-button>
+        <mat-radio-button value="output">Output</mat-radio-button>
+        <mat-radio-button value="returns">Returns</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Total quantity" required formControlName="quantity">
+      </mat-form-field>
+      <button mat-mini-fab aria-label="Add position" type="menu" class="myButton" (click)="addPosition()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div formArrayName="positions" *ngFor="let position of getControls(); let i = index;">
+      <mat-form-field>
+        <input matInput placeholder="Rack" required [attr.for]="'rack'+i">
+      </mat-form-field>
+      <mat-form-field [floatLabel]="floatLabelControl.value">
+        <input matInput placeholder="Quantity per rack" [attr.for]="'quantity'+i">
+      </mat-form-field>
+      <mat-form-field [floatLabel]="floatLabelControl.value">
+        <input matInput placeholder="Boxes" [attr.for]="'perCarton'+ i ">
+      </mat-form-field>
+      <button mat-mini-fab aria-label="Add position" color="warn" (click)="removePosition(i)">
+        <mat-icon>remove</mat-icon>
+      </button>
+
+    </div>
+
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!services.formMovent.valid">Submit</button>
+      <button mat-raised-button color="warn" type="reset">Clear</button>
+    </div>
+  </form>
+
 </div>

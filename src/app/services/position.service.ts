@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Position } from '../Interface/position';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class PositionService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   componentId: number;
   private url = 'https://localhost:44357/api/position'
@@ -18,8 +18,8 @@ export class PositionService {
   formMovent: FormGroup= new FormGroup({
     $Key: new FormControl(null),
     action: new FormControl('', Validators.required),
-    rack: new FormControl('', Validators.required),
     quantity: new FormControl(0, Validators.required),
+    positions: this.fb.array([])
   })
 
   initializeFormGroup() {
