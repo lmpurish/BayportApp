@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IMovent } from 'src/app/Interface/IMovent';
+import { Position } from 'src/app/Interface/position';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { MoventService } from 'src/app/services/movent.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -39,6 +40,10 @@ export class MoventComponent implements OnInit {
         date: this.datePipe.transform(this.date, 'yyyy-MM-dd'),
         componentId: this.componentServices.componentInUse,
       }
+
+      positions: this.services.formMovent.controls['positions'] as FormArray;
+
+      console.log(this.services.formMovent.controls['positions'] as FormArray)
 
       this.moventServices.saveMovent(movent).subscribe(date => {
         this.onClose();

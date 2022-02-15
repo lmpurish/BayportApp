@@ -28,7 +28,8 @@ export class PositionService {
       rack: '',
       action: true,
       quantity: 0,
-      comoponentId: this.componentId
+      comoponentId: this.componentId,
+      positions: this.fb.array([])
     });
   }
 
