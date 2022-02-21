@@ -22,14 +22,18 @@ export class MoventComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   date = new Date();
   positionToRemove: number[] = [];
+  positionsArray: any;
 
   constructor(private datePipe: DatePipe, private notification: NotificationService, public dialogRef: MatDialogRef<MoventComponent>, public services: PositionService, public moventServices: MoventService, private fb: FormBuilder, public componentServices: ComponentServiceService) { }
 
   ngOnInit(): void {
+    this.addPosition();
   }
   onClose() {
-    this.dialogRef.close();
+    this.resetPositions();
     this.services.formMovent.reset();
+    this.dialogRef.close();
+
   }
 
   onSubmit() {
@@ -40,16 +44,31 @@ export class MoventComponent implements OnInit {
         date: this.datePipe.transform(this.date, 'yyyy-MM-dd'),
         componentId: this.componentServices.componentInUse,
       }
+     
 
-      positions: this.services.formMovent.controls['positions'] as FormArray;
+      this.positionsArray = this.services.formMovent.get('positions');
+      for (let c of this.positionsArray.controls) {
+        const position: Position = {
+          rack: c.get('rack').value,
+          quantity: c.get('quantity').value,
+          perCarton: c.get('perCarton').value,
+          componentId: this.componentServices.componentInUse,
+          inUse: true,
+        }
+        
+        this.services.savePosition(position).subscribe(date => {
+         
+        })
 
-      console.log(this.services.formMovent.controls['positions'] as FormArray)
+      }
 
       this.moventServices.saveMovent(movent).subscribe(date => {
         this.onClose();
         this.services.formMovent.reset();
         this.notification.success(":: Action Successfully")
       })
+
+
     }
 
   }
@@ -57,11 +76,24 @@ export class MoventComponent implements OnInit {
     let positionArr = this.services.formMovent.get('positions') as FormArray;
     let positionFG = this.buildPosition();
     positionArr.push(positionFG);
-    
   }
   getControls() {
     return (this.services.formMovent.get('positions') as FormArray).controls;
+
   }
+
+  resetPositions() {
+    let positionArr = this.services.formMovent.get('positions') as FormArray;
+    let qty = positionArr.length;
+
+    for (let i = 0; i < qty; i++) {
+      positionArr.removeAt(qty - i);
+    }
+    positionArr.removeAt(0);
+
+  }
+
+
   buildPosition() {
     return this.fb.group({
       id: 0,
