@@ -23,6 +23,8 @@ export class MoventComponent implements OnInit {
   date = new Date();
   positionToRemove: number[] = [];
   positionsArray: any;
+  inputVisibility = true;
+  outputVisibility = true;
 
   constructor(private datePipe: DatePipe, private notification: NotificationService, public dialogRef: MatDialogRef<MoventComponent>, public services: PositionService, public moventServices: MoventService, private fb: FormBuilder, public componentServices: ComponentServiceService) { }
 
@@ -44,8 +46,6 @@ export class MoventComponent implements OnInit {
         date: this.datePipe.transform(this.date, 'yyyy-MM-dd'),
         componentId: this.componentServices.componentInUse,
       }
-     
-
       this.positionsArray = this.services.formMovent.get('positions');
       for (let c of this.positionsArray.controls) {
         const position: Position = {
@@ -55,31 +55,38 @@ export class MoventComponent implements OnInit {
           componentId: this.componentServices.componentInUse,
           inUse: true,
         }
-        
         this.services.savePosition(position).subscribe(date => {
-         
         })
-
       }
-
       this.moventServices.saveMovent(movent).subscribe(date => {
         this.onClose();
         this.services.formMovent.reset();
         this.notification.success(":: Action Successfully")
       })
-
-
     }
-
   }
+
+  validateQuantity() {
+    let quanntity = 0;
+    this.positionsArray = this.services.formMovent.get('positions');
+
+    for (let c of this.positionsArray.controls) {
+      quanntity += c.get('quantity').value;
+    }
+    if (quanntity == this.services.formMovent.get('quantity').value && this.services.formMovent.get('quantity').value > 0)
+      return true;
+    else
+      return false;
+  }
+
   addPosition() {
     let positionArr = this.services.formMovent.get('positions') as FormArray;
     let positionFG = this.buildPosition();
     positionArr.push(positionFG);
   }
+
   getControls() {
     return (this.services.formMovent.get('positions') as FormArray).controls;
-
   }
 
   resetPositions() {
@@ -111,6 +118,22 @@ export class MoventComponent implements OnInit {
       this.positionToRemove.push(<number>positionRemove.controls['id'].value);
     }
     positionArr.removeAt(index);
+  }
+
+  inputForm() {
+    this.inputVisibility = !this.inputVisibility;
+    this.outputVisibility = true;
+  }
+
+  outputForm() {
+    this.outputVisibility = !this.outputVisibility;
+    this.inputVisibility = true;
+  }
+
+  validateForm() {
+    if (this.services.formMovent.valid && this.validateQuantity())
+      return false;
+    return true;
   }
 }
 

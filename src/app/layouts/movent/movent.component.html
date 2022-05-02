@@ -12,40 +12,45 @@
     <div>
       <label>Actions: </label>
       <mat-radio-group [formControl]="floatLabelControl" formControlName="action" required>
-        <mat-radio-button value="input">Input</mat-radio-button>
-        <mat-radio-button value="output">Output</mat-radio-button>
+        <mat-radio-button value="input" (change)="inputForm()">Input</mat-radio-button>
+        <mat-radio-button value="output" (change)="outputForm()">Output</mat-radio-button>
         <mat-radio-button value="returns">Returns</mat-radio-button>
       </mat-radio-group>
     </div>
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Total quantity" required formControlName="quantity" type="number">
-      </mat-form-field>
-      <button mat-mini-fab aria-label="Add position" type="button" class="myButton" (click)="addPosition()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <div formArrayName="positions" *ngFor="let position of getControls(); let i = index;">
-      <div [formGroupName]="i">
-        <mat-form-field>
-          <input matInput placeholder="Rack" required [attr.id]="'rack'+i" formControlName="rack">
+    <div [hidden]="inputVisibility">
+      <div >
+        <mat-form-field >
+          <input matInput placeholder="Total quantity" required formControlName="quantity" type="number">
         </mat-form-field>
-        <mat-form-field [floatLabel]="floatLabelControl.value">
-          <input matInput placeholder="Quantity per rack" required [attr.id]="'quantity'+i" formControlName="quantity" type="number">
-        </mat-form-field>
-        <mat-form-field [floatLabel]="floatLabelControl.value">
-          <input matInput placeholder="Boxes per Rack" required [attr.id]="'perCarton'+i" formControlName="perCarton" type="number">
-        </mat-form-field>
-        <button mat-mini-fab aria-label="Remove position" color="warn" (click)="removePosition(i)" [ngClass]="{'hide':  i==0}">
-          <mat-icon>remove</mat-icon>
+        <button mat-mini-fab aria-label="Add position" type="button" class="myButton" (click)="addPosition()">
+          <mat-icon>add</mat-icon>
         </button>
       </div>
-
+      <div formArrayName="positions" *ngFor="let position of getControls(); let i = index;" >
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input matInput placeholder="Rack" required [attr.id]="'rack'+i" formControlName="rack">
+          </mat-form-field>
+          <mat-form-field [floatLabel]="floatLabelControl.value">
+            <input matInput placeholder="Quantity per rack" required [attr.id]="'quantity'+i" formControlName="quantity" type="number">
+          </mat-form-field>
+          <mat-form-field [floatLabel]="floatLabelControl.value">
+            <input matInput placeholder="Boxes per Rack" required [attr.id]="'perCarton'+i" formControlName="perCarton" type="number">
+          </mat-form-field>
+          <button mat-mini-fab aria-label="Remove position" color="warn" (click)="removePosition(i)" [ngClass]="{'hide':  i==0}">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+    <div [hidden]="outputVisibility">
+      <input matInput placeholder="Boxes per Rack" formControlName="perCarton" type="number">
     </div>
 
 
-    <div class="button-row">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!services.formMovent.valid">Submit</button>
+    <div class="button-row" >
+      <button mat-raised-button color="primary" type="submit" [disabled]="validateForm()">Submit</button>
       <button mat-raised-button color="warn" type="reset">Clear</button>
     </div>
   </form>
