@@ -9,7 +9,7 @@ import { IProduct } from '../Interface/IProduct';
 })
 export class ProductService {
 
-  private baseURL = "https://localhost:44357/api/product";
+  private baseURL = "https://localhost:5001/api/product";
   editMode: boolean = false;
 
 

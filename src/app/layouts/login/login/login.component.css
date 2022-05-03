@@ -1,0 +1,35 @@
+.card {
+  margin-top: 10%;
+  margin-left: 35%;
+  margin-right: 35%;
+  width: auto;
+  text-align: center;
+}
+
+.success {
+  background-color: green;
+  color: white;
+  width: 80%;
+}
+
+.content-login {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+.mat-form-field {
+  display: block;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: auto;
+}
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+  color: #216585;
+}
+
+a:hover{
+    color: rgb(192, 160, 19);
+}
+

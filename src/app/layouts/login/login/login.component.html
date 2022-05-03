@@ -1,1 +1,41 @@
-<form class="form"action=""></form>
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content><h3>BayportLab</h3></mat-card-content>
+    <mat-card-title class="login-title">
+      <a href="">Login</a>
+      /
+      <a href="">Sign up</a>
+    </mat-card-title>
+    <mat-divider inset></mat-divider>
+    <form class="my-form" [formGroup]="service.form" autocomplete="off" (ngSubmit)="login()">
+      <div class="content-login">
+        <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Enter your username</mat-label>
+            <input matInput formControlName="username"/>
+            <mat-icon matSuffix></mat-icon>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+      </div>
+      
+      <mat-card-actions>
+        <button mat-raised-button class="success" type="submit">Submit</button>
+       </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

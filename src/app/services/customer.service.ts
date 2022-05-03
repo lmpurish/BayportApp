@@ -11,7 +11,7 @@ import { CustomerComponent } from '../Manage/customer/customer.component';
 })
 export class CustomerService {
 
-  private baseURL = "https://localhost:44357/api/customer";
+  private baseURL = "https://localhost:5001/api/customer";
   editMode: boolean = false;
 
   constructor(private http: HttpClient) { }

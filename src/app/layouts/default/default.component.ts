@@ -3,22 +3,27 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css']
+  styleUrls: ['./default.component.css'],
 })
 export class DefaultComponent implements OnInit {
-
   sideBarOpen = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
-  sideBarToggler(){
-    
-      this.sideBarOpen = !this.sideBarOpen;
-  
-      
-  }
+  isUserAuthenticated(){
+    const token: string = localStorage.getItem('jwt');
 
+    if(token){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }
