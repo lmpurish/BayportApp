@@ -17,8 +17,8 @@ export class ComponentServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUR = 'https://localhost:44357/api/component';
-  private URLProduct = 'https://localhost:44357/api/Product';
+  private baseUR = 'https://localhost:5001/api/component';
+  private URLProduct = 'https://localhost:5001/api/Product';
 
   componentInUse: any;
   form: FormGroup = new FormGroup({

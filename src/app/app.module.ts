@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule} from '../app/app-routing/app-routing.module';
+import { AppRoutingModule } from '../app/app-routing/app-routing.module';
 import { MaterialModule } from '../app/material/material/material.module';
 
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 import { NewProjectComponent } from './manage/project/new-project/new-project.component';
 import { NewProductComponent } from './manage/product/new-product/new-product.component';
 import { MoventComponent } from './layouts/movent/movent.component';
+import { LoginComponent } from './layouts/login/login/login.component';
 
 
 
@@ -36,29 +37,22 @@ import { MoventComponent } from './layouts/movent/movent.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
-    
-         FooterComponent,
-         HeaderComponent,
-         SidebarComponent,
-         DefaultComponent,
-         ComponentComponent,
-         NewComponentComponent,
-       
-         ComponentDetailComponent,
-         CustomerComponent,
-         NewCustomnerComponent,
-         ProductComponent,
-         ProjectComponent,
-         MatConfirmDialogComponent,
-         NewProjectComponent,
-         NewProductComponent,
-         MoventComponent,
-   
-      
-         
-         
-    
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    DefaultComponent,
+    ComponentComponent,
+    NewComponentComponent,
+    ComponentDetailComponent,
+    CustomerComponent,
+    NewCustomnerComponent,
+    ProductComponent,
+    ProjectComponent,
+    MatConfirmDialogComponent,
+    NewProjectComponent,
+    NewProductComponent,
+    MoventComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,16 +61,12 @@ import { MoventComponent } from './layouts/movent/movent.component';
     MaterialModule,
     CommonModule,
     HttpClientModule,
-    
-    
-    
-
   ],
   exports: [
-    
+
   ],
   providers: [ComponentServiceService, PositionService],
   bootstrap: [AppComponent],
-  entryComponents:[MatConfirmDialogComponent]
+  entryComponents: [MatConfirmDialogComponent]
 })
 export class AppModule { }
