@@ -1,9 +1,13 @@
+
+.logo{
+  margin-left: 45%;
+}
 .card {
-  margin-top: 10%;
   margin-left: 35%;
   margin-right: 35%;
   width: auto;
   text-align: center;
+  background-color: rgb(239, 245, 247);
 }
 
 .success {
@@ -30,6 +34,7 @@ a {
 }
 
 a:hover{
-    color: rgb(192, 160, 19);
+    color: rgb(0, 119, 255);
 }
+
 
