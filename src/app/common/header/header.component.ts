@@ -1,4 +1,6 @@
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 @Component({
@@ -9,13 +11,19 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter()
-  constructor() { }
+  constructor(private router: Router, private notification: NotificationService) { }
 
   ngOnInit(): void {
   }
 
   toggleSideBar(){
     this.toggleSideBarForMe.emit()
+  }
+
+  logOut(){
+    localStorage.removeItem("jwt");
+    this.router.navigate(["login"]);
+    this.notification.success("Logout successfully!!")
   }
 
 }

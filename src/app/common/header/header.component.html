@@ -1,15 +1,21 @@
 <mat-toolbar color="primary">
-      
-      <button type="button" mat-button >
-        <mat-icon aria-label="Side nav toggle icon" (click)="toggleSideBar()">menu</mat-icon>
-      </button>
-      <span>BayportLab</span>
-      <span class="spacer"></span>
-      
-      <button mat-button><mat-icon aria-label="Side nav toggle icon">notifications</mat-icon></button>
-      <button mat-button [matMenuTriggerFor]="menu"><mat-icon aria-label="Side nav toggle icon">person</mat-icon></button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item><mat-icon aria-label="Side nav toggle icon">logout</mat-icon> Sign out</button>
-        </mat-menu>
-      
+
+  <button type="button" mat-button>
+    <mat-icon aria-label="Side nav toggle icon" (click)="toggleSideBar()">menu</mat-icon>
+  </button>
+  <span>BayportLab</span>
+  <span class="spacer"></span>
+
+  <button mat-button>
+    <mat-icon aria-label="Side nav toggle icon">notifications</mat-icon>
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon aria-label="Side nav toggle icon">person</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logOut()">
+      <mat-icon aria-label="Side nav toggle icon">logout</mat-icon> Sign out
+    </button>
+  </mat-menu>
+
 </mat-toolbar>

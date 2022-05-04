@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app/app-routing/app-routing.module';
 import { MaterialModule } from '../app/material/material/material.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './common/footer/footer.component';
@@ -26,9 +27,12 @@ import { NewProjectComponent } from './manage/project/new-project/new-project.co
 import { NewProductComponent } from './manage/product/new-product/new-product.component';
 import { MoventComponent } from './layouts/movent/movent.component';
 import { LoginComponent } from './layouts/login/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
-
+export function tokenGetter(){
+  return localStorage.getItem("jwt");
+}
 
 
 
@@ -58,6 +62,13 @@ import { LoginComponent } from './layouts/login/login/login.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44357"],
+        disallowedRoutes: []
+      }
+    }),
     MaterialModule,
     CommonModule,
     HttpClientModule,
@@ -65,7 +76,7 @@ import { LoginComponent } from './layouts/login/login/login.component';
   exports: [
 
   ],
-  providers: [ComponentServiceService, PositionService],
+  providers: [ComponentServiceService, PositionService, AuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: [MatConfirmDialogComponent]
 })

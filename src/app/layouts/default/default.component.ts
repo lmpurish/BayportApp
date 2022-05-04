@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-default',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class DefaultComponent implements OnInit {
   sideBarOpen = true;
 
-  constructor() {}
+  constructor(private router: Router, private jwtHelper: JwtHelperService) {}
 
   ngOnInit(): void {}
 
@@ -19,11 +21,13 @@ export class DefaultComponent implements OnInit {
   isUserAuthenticated(){
     const token: string = localStorage.getItem('jwt');
 
-    if(token){
+    if(token && !this.jwtHelper.isTokenExpired(token) ){
       return true;
     }
     else{
       return false;
     }
   }
+
+  
 }

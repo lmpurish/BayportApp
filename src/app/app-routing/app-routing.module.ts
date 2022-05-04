@@ -6,28 +6,33 @@ import { ComponentComponent } from '../Manage/component/component.component';
 import { CustomerComponent } from '../Manage/customer/customer.component';
 import { ProductComponent } from '../Manage/product/product.component';
 import { ProjectComponent } from '../Manage/project/project.component';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 
 const routes: Routes = [{
   path: '',
   component: DashboardComponent,
-  
+  canActivate : [AuthGuardService]
 },
 {
   path: "components",
-  component: ComponentComponent
+  component: ComponentComponent,
+  canActivate : [AuthGuardService]
 },
 {
   path: "customers",
-  component: CustomerComponent
+  component: CustomerComponent,
+  canActivate : [AuthGuardService]
 },
 {
   path: 'projects',
-  component: ProjectComponent
+  component: ProjectComponent,
+  canActivate : [AuthGuardService]
 },
 {
   path: 'products',
-  component: ProductComponent
+  component: ProductComponent,
+  canActivate : [AuthGuardService]
 },
 {
   path: 'login',
