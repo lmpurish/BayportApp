@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.service.form.reset();
   }
 
   login(){
