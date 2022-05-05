@@ -28,6 +28,7 @@ import { NewProductComponent } from './manage/product/new-product/new-product.co
 import { MoventComponent } from './layouts/movent/movent.component';
 import { LoginComponent } from './layouts/login/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { UserComponent } from './layouts/user/user.component';
 
 
 export function tokenGetter(){
@@ -57,6 +58,7 @@ export function tokenGetter(){
     NewProductComponent,
     MoventComponent,
     LoginComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
