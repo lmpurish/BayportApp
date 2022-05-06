@@ -8,79 +8,71 @@ import { NotificationService } from 'src/app/services/notification.service';
 @Component({
   selector: 'app-new-component',
   templateUrl: './new-component.component.html',
-  styleUrls: ['./new-component.component.css']
+  styleUrls: ['./new-component.component.css'],
 })
 export class NewComponentComponent implements OnInit {
-
   file: File;
   photoSelected: any;
-  productList:any=[];
+  productList: any = [];
   types = [
-    {value: 'Component'},
-    {value: 'RowMaterial'},
-    {value: 'Spendable'}
+    { value: 'Component' },
+    { value: 'RowMaterial' },
+    { value: 'Spendable' },
   ];
-  constructor( public dialogRef: MatDialogRef<NewComponentComponent>, public service: ComponentServiceService, 
-    private route: Router, public notification: NotificationService) { }
-    
-  
+  constructor(
+    public dialogRef: MatDialogRef<NewComponentComponent>,
+    public service: ComponentServiceService,
+    private route: Router,
+    public notification: NotificationService
+  ) {}
+
   ngOnInit(): void {
     this.refresshProductList();
   }
 
-
-
   onClose() {
     this.dialogRef.close();
     this.service.form.reset();
-
   }
   onPhotoSelected(event: any): void {
     if (event.target.files && event.target.files[0]) {
       this.file = <File>event.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(this.file);
-      reader.onload = e => this.photoSelected = reader.result;
+      reader.onload = (e) => (this.photoSelected = reader.result);
     }
   }
   showPicture() {
-    if (false)
-      return "assets/"+this.service.form.get('picture')?.value
+    if (false) return 'assets/' + this.service.form.get('picture')?.value;
+    console.log(this.photoSelected);
     return this.photoSelected;
-}
-onSubmit(){
-  if(this.service.form.valid){
-    const component: IComponent={
-      name: this.service.form.get('name').value,
-      description: this.service.form.get('description').value,
-      itemCode: this.service.form.get('itemCode').value,
-      barCode: this.service.form.get('barCode').value,
-      picture: this.file.name,
-      productid: this.service.form.get('product').value,
-      type: this.service.form.get('type').value,
-    }
-    this.service.saveComponent(component).subscribe(data => {
-    this.service.uploadFile(this.file);
-    this.onSaveSuccess();
-    this.onClose();
-  });
   }
-}
-onSaveSuccess() {
-  //  window.location.reload();
-    this.notification.success("::  Submitted successfully")
- }
+  onSubmit() {
+    if (this.service.form.valid) {
+      const component: IComponent = {
+        name: this.service.form.get('name').value,
+        description: this.service.form.get('description').value,
+        itemCode: this.service.form.get('itemCode').value,
+        barCode: this.service.form.get('barCode').value,
+        picture: this.file.name,
+        productid: this.service.form.get('product').value,
+        type: this.service.form.get('type').value,
+      };
+      this.service.saveComponent(component).subscribe((data) => {
+        this.service.uploadFile(this.file);
+        this.onSaveSuccess();
+        this.onClose();
+      });
+    }
+  }
+  onSaveSuccess() {
+    //  window.location.reload();
+    this.notification.success('::  Submitted successfully');
+  }
 
- refresshProductList(){
-  this.service.getProducts().subscribe(data=>{
-  this.productList=data;
-  
-  });
-  
-
-}
-
-
- 
-
+  refresshProductList() {
+    this.service.getProducts().subscribe((data) => {
+      this.productList = data;
+    });
+  }
 }

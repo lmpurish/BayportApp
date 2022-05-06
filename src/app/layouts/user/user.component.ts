@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['username', 'email','firstName','lastName','rol'];
+  displayedColumns: string[] = ['username', 'email','firstName','lastName','rol','actions'];
   dataSource : MatTableDataSource<UserComponent>;
   searchKey: string;
   @ViewChild(MatSort) sort: MatSort;

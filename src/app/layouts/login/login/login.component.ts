@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     .subscribe( response => {
       const token = (<any>response).token;
       localStorage.setItem("jwt", token);
+      localStorage.setItem('username',credentials.userName);
       this.invalidLogin = false;
       this.router.navigate(["/"]);
       this.notification.success("Welcome!!!");
@@ -40,6 +41,8 @@ export class LoginComponent implements OnInit {
       this.notification.warn("Wrong credentials!!!");
     });
   }
-
+  
+  
+     
   
 }
