@@ -19,6 +19,15 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.chargeUser();
   }
+  
+  showAvatar(){
+    
+    if(this.avatar != "" && this.avatar !=null )
+      return "https://localhost:5001/api/Component/getPhoto/"+this.avatar;
+    else 
+      return "assets/no-image.png";
+
+  }
 
   chargeUser() {
     if (this.isLoggedIn) {

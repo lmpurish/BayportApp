@@ -20,11 +20,14 @@ export class NewComponentComponent implements OnInit {
     { value: 'Spendable' },
   ];
   constructor(
-    public dialogRef: MatDialogRef<NewComponentComponent>,
-    public service: ComponentServiceService,
-    private route: Router,
+    public dialogRef:    MatDialogRef<NewComponentComponent>,
+    public service:      ComponentServiceService,
+    private route:       Router,
     public notification: NotificationService
-  ) {}
+  ) 
+  {
+
+  }
 
   ngOnInit(): void {
     this.refresshProductList();
@@ -36,8 +39,8 @@ export class NewComponentComponent implements OnInit {
   }
   onPhotoSelected(event: any): void {
     if (event.target.files && event.target.files[0]) {
-      this.file = <File>event.target.files[0];
-      const reader = new FileReader();
+      this.file     = <File>event.target.files[0];
+      const reader  = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (e) => (this.photoSelected = reader.result);
     }

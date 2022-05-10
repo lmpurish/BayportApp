@@ -25,6 +25,10 @@ export class UserService {
     return this.http.get<IRol>("https://localhost:5001/api/rol/" + id );
   }
 
+  getRoles():Observable<any[]>{
+    return this.http.get<any>("https://localhost:5001/api/rol");
+  }
+
   }
   
 

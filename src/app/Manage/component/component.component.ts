@@ -28,7 +28,11 @@ export class ComponentComponent implements OnInit {
   productList:any=[];
 
   searchKey: string 
-  constructor(private dialog: MatDialog, public service:ComponentServiceService, private dialogService: DialogService,private notification: NotificationService ) { }
+  constructor(
+    private dialog:         MatDialog,
+    public service:         ComponentServiceService,
+    private dialogService:  DialogService,
+    private notification:   NotificationService ) { }
   
 
   ngOnInit(): void {

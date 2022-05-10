@@ -29,6 +29,7 @@ import { MoventComponent } from './layouts/movent/movent.component';
 import { LoginComponent } from './layouts/login/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserComponent } from './layouts/user/user.component';
+import { RegisterComponent } from './layouts/user/register/register.component';
 
 
 export function tokenGetter(){
@@ -59,6 +60,7 @@ export function tokenGetter(){
     MoventComponent,
     LoginComponent,
     UserComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

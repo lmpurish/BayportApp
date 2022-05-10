@@ -46,7 +46,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by rol">
           Rol
         </th>
-        <td mat-cell *matCellDef="let element"> {{element.rolId}} </td>
+        <td mat-cell *matCellDef="let element">{{rolMap.get(element.rolId)}}</td>
       </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
