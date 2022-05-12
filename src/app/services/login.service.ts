@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private baseURL = 'https://localhost:5001/api/auth/login';
+  private baseURL = 'https://localhost:44357/api/auth/login';
   registerMode: boolean = false;
 
   constructor(private http: HttpClient) {}

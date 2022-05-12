@@ -14,7 +14,13 @@ import { ComponentComponent } from '../../component/component.component';
 export class NewCustomnerComponent implements OnInit{
 
   @ViewChild(CustomerComponent) child: CustomerComponent;
-  constructor(public services: CustomerService,public dialogRef: MatDialogRef<NewCustomnerComponent>, public notification: NotificationService) { }
+  constructor(
+    public services:      CustomerService,
+    public dialogRef:     MatDialogRef<NewCustomnerComponent>,
+    public notification:  NotificationService) 
+    {
+
+    }
 
   ngOnInit(): void {
   }
