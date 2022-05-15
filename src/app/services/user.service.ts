@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { RouterState } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IRol } from '../Interface/IRol';
 import { IUser } from '../Interface/IUser';
@@ -11,17 +12,19 @@ import { UserComponent } from '../layouts/user/user.component';
 })
 export class UserService {
 
-  private baseURL     = "https://localhost:44357/api/user";
-  private baseURLRol  = "https://localhost:44357/api/rol";
+  private baseURL     = "https://localhost:5001/api/user";
+  private baseURLRol  = "https://localhost:5001/api/rol";
   constructor(private http: HttpClient) { }
 
   form: FormGroup = new FormGroup({
-    $key:       new FormControl(null),
-    username:   new FormControl('', Validators.required),
-    password:   new FormControl('', Validators.required),
-    email:      new FormControl('',Validators.required),
-    firstname:  new FormControl('', Validators.required),
-    lastname:   new FormControl('',Validators.required),
+    $key:             new FormControl(null),
+    username:         new FormControl('', Validators.required),
+    password:         new FormControl('', Validators.required),
+    repetedPassword:  new FormControl('',Validators.required),
+    email:            new FormControl('',Validators.required),
+    firstname:        new FormControl('', Validators.required),
+    lastname:         new FormControl('',Validators.required),
+    userId:           new FormControl('',Validators.required),
   });
 
   chargeForm(row: any){
@@ -32,6 +35,7 @@ export class UserService {
       email:      row.email,
       firstname:  row.firstname,
       lastname:   row.lastname,
+      userId:     row.rolId,
     })
 
   }

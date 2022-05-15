@@ -3,6 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogService } from 'src/app/services/dialog.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 import { RegisterComponent } from './register/register.component';
 
@@ -24,6 +26,8 @@ export class UserComponent implements OnInit {
   constructor(
     public services:        UserService,
     private dialog:         MatDialog,
+    private dialogService:  DialogService,
+    private notification:   NotificationService
 
     ) 
   {

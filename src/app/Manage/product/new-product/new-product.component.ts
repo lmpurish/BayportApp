@@ -64,7 +64,6 @@ export class NewProductComponent implements OnInit {
   refreshProjectList(){
     this.projectService.getProjects().subscribe(data=>{
     this.projectList=data;
-    
     });
   }
 
