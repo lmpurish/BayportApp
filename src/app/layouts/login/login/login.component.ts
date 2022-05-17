@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import * as shajs from 'sha.js';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,9 @@ export class LoginComponent implements OnInit {
   login(){
     const credentials = {
       "userName": this.service.form.value.username,
-      "password": this.service.form.value.password
+      "password": shajs('sha256').update(this.service.form.value.password).digest('hex')
     }
-  
+   console.log(credentials);
    this.service.login(credentials)
     .subscribe( response => {
       const token = (<any>response).token;

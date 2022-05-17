@@ -12,8 +12,8 @@ import { UserComponent } from '../layouts/user/user.component';
 })
 export class UserService {
 
-  private baseURL     = "https://localhost:5001/api/user";
-  private baseURLRol  = "https://localhost:5001/api/rol";
+  private baseURL     = "https://localhost:44357/api/user";
+  private baseURLRol  = "https://localhost:44357/api/rol";
   constructor(private http: HttpClient) { }
 
   form: FormGroup = new FormGroup({
@@ -24,7 +24,7 @@ export class UserService {
     email:            new FormControl('',Validators.required),
     firstname:        new FormControl('', Validators.required),
     lastname:         new FormControl('',Validators.required),
-    userId:           new FormControl('',Validators.required),
+    rolId:           new FormControl('',Validators.required),
   });
 
   chargeForm(row: any){
@@ -35,7 +35,7 @@ export class UserService {
       email:      row.email,
       firstname:  row.firstname,
       lastname:   row.lastname,
-      userId:     row.rolId,
+      rolId:      row.rolId,
     })
 
   }
@@ -54,6 +54,10 @@ export class UserService {
 
   getRoles():Observable<any[]>{
     return this.http.get<any>(this.baseURLRol);
+  }
+
+  saveUser(user: IUser){
+    return this.http.post<IUser>(this.baseURL, user);
   }
 
   }
