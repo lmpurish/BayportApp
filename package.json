@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@auth0/angular-jwt": "^5.0.2",
+    "angular-sha": "^0.3.3",
     "highcharts": "^9.3.3",
     "highcharts-angular": "^3.0.0",
     "rxjs": "~6.5.4",
