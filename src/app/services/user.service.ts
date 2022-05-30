@@ -12,8 +12,8 @@ import { UserComponent } from '../layouts/user/user.component';
 })
 export class UserService {
 
-  private baseURL     = "https://localhost:5001/api/user";
-  private baseURLRol  = "https://localhost:5001/api/rol";
+  private baseURL     = "https://localhost:44357/api/user";
+  private baseURLRol  = "https://localhost:44357/api/rol";
   constructor(private http: HttpClient) { }
 
   form: FormGroup = new FormGroup({

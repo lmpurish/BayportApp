@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource} from '@angular/material/table';
@@ -21,9 +21,9 @@ export class CustomerComponent implements OnInit {
   dataSource : MatTableDataSource<CustomerComponent>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  searchKey: string 
+  searchKey: string;
+  
 
-  childData: "mi prueba";
 
   constructor(public services: CustomerService, public dialog: MatDialog, public dialogService: DialogService, public notification:NotificationService) { }
 
@@ -38,10 +38,6 @@ export class CustomerComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })
-    return 1;
-
-   
-
   }
 
   onCreate(){
