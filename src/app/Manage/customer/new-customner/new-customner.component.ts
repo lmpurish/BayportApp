@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, Output, Input,ViewChild, EventEmitter } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -14,11 +14,11 @@ import { ComponentComponent } from '../../component/component.component';
 })
 export class NewCustomnerComponent implements OnInit {
 
-  @Output() chargeCustomer = new EventEmitter();
-    constructor(
-      public services: CustomerService,
-      public dialogRef: MatDialogRef<NewCustomnerComponent>,
-      public notification: NotificationService) {
+ 
+  constructor(
+    public services: CustomerService,
+    public dialogRef: MatDialogRef<NewCustomnerComponent>,
+    public notification: NotificationService) {
 
   }
 
@@ -37,14 +37,13 @@ export class NewCustomnerComponent implements OnInit {
 
       if (this.services.editMode) {
         const customer: ICustomer = {
-          _id: this.services.form.get('$key').value,
+          id: this.services.form.get('$key').value,
           name: this.services.form.get('name').value,
           contact: this.services.form.get('contact').value,
         }
         this.services.updateCustomer(customer).subscribe(data => {
           this.services.editMode = false;
           this.onSaveSuccess(":: Modify successfully");
-
         })
 
       }
@@ -57,7 +56,7 @@ export class NewCustomnerComponent implements OnInit {
           this.onSaveSuccess(':: Submitted successfully');
           this.onClose();
         });
-       
+
       }
 
     }
@@ -66,6 +65,7 @@ export class NewCustomnerComponent implements OnInit {
   onSaveSuccess(msg: any) {
     this.notification.success(msg);
     this.onClose();
+    this.services.chargeCustomer.emit();
   }
 
 }

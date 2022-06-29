@@ -29,6 +29,10 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.chargeList();
     this.refreshProjectMap();
+    this.services.chargeProduct.subscribe(data => {
+      this.chargeList();
+      this.refreshProjectMap();
+    })
   }
 
   chargeList(){

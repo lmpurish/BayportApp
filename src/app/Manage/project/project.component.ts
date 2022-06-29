@@ -29,6 +29,9 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.chargeList();
     this.refreshCustomerMap();
+    this.services.chargeProject.subscribe(data =>{
+      this.chargeList();
+    })
   }
 
   chargeList(){

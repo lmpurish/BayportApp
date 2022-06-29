@@ -29,6 +29,9 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.chargeList();
+    this.services.chargeCustomer.subscribe(data =>{
+      this.chargeList();
+    })
   }
 
 

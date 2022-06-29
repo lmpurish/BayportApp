@@ -14,11 +14,12 @@ export class ComponentServiceService {
   public progress: number | undefined;
   public message: string | undefined;
   @Output() public onUploadFinished = new EventEmitter();
+  @Output() chargeComponent : EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
-  private baseUR = 'https://localhost:5001/api/component';
-  private URLProduct = 'https://localhost:5001/api/Product';
+  private baseUR = 'https://localhost:44357/api/component';
+  private URLProduct = 'https://localhost:44357/api/Product';
 
   componentInUse: any;
   form: FormGroup = new FormGroup({
@@ -30,8 +31,6 @@ export class ComponentServiceService {
     picture: new FormControl('',Validators.required),
     product: new FormControl('',Validators.required),
     type: new FormControl('', Validators.required),
-
-    
   });
  
   getComponents(){
@@ -48,22 +47,6 @@ export class ComponentServiceService {
   }
   saveComponent(component: IComponent): Observable<IComponent> {
     return this.http.post<IComponent>(this.baseUR, component);
-  }
-
-  public uploadFile = (file:  File) => {
-    
-    let fileToUpload = <File>file;
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    this.http.post(this.baseUR+ '/upload', formData, { reportProgress: true, observe: 'events' })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
-          this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
-          this.onUploadFinished.emit(event.body);
-        }
-      });
   }
 
   getProducts():Observable<any[]>{

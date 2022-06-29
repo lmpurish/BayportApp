@@ -1,10 +1,9 @@
 import { Component, OnInit,ViewChild,  } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort, Sort} from '@angular/material/sort';
+import { MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { ComponentComponent } from '../component.component';
 import { IComponent } from 'src/app/Interface/IComponent';
 import { Position } from 'src/app/Interface/position';
 import { MoventComponent } from 'src/app/layouts/movent/movent.component';
@@ -20,17 +19,21 @@ export class ComponentDetailComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ComponentDetailComponent>, private dialog: MatDialog,public services: ComponentServiceService) { }
 
-  componentDetail: IComponent=new IComponent;
+  componentDetail:  IComponent=new IComponent;
   displayedColumns: string[] = ['rack', 'boxes', 'quantity', ];
-  dataSource : MatTableDataSource<Position>;
-  listPositions: Position[]=[];
-  picture: string="";
+  dataSource :      MatTableDataSource<Position>;
+  listPositions:    Position[]=[];
+  picture:          string="";
   
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort:           MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(): void {
     this.chargeComponent();
+    this.services.chargeComponent.subscribe(data => {
+      this.chargeComponent();
+      this.quantity();
+    })
   }
 
   onClose() {

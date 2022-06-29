@@ -38,6 +38,10 @@ export class ComponentComponent implements OnInit {
   ngOnInit(): void {
     this.chargeList();
     this.refresshProductMap();
+    this.service.chargeComponent.subscribe(data => {
+      this.chargeList();
+    this.refresshProductMap();
+    })
   }
 
   onSearchClear() {

@@ -30,6 +30,10 @@ import { LoginComponent } from './layouts/login/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserComponent } from './layouts/user/user.component';
 import { RegisterComponent } from './layouts/user/register/register.component';
+import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UploadFileService } from './services/upload-file.service';
+
 
 
 export function tokenGetter(){
@@ -47,6 +51,7 @@ export function tokenGetter(){
     HeaderComponent,
     SidebarComponent,
     DefaultComponent,
+    DashboardComponent,
     ComponentComponent,
     NewComponentComponent,
     ComponentDetailComponent,
@@ -61,6 +66,7 @@ export function tokenGetter(){
     LoginComponent,
     UserComponent,
     RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -78,9 +84,9 @@ export function tokenGetter(){
     HttpClientModule,
   ],
   exports: [
-
+    
   ],
-  providers: [ComponentServiceService, PositionService, AuthGuardService],
+  providers: [ComponentServiceService, PositionService, AuthGuardService, UploadFileService],
   bootstrap: [AppComponent],
   entryComponents: [MatConfirmDialogComponent]
 })

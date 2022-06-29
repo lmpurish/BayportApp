@@ -4,6 +4,7 @@ import { IComponent } from 'src/app/Interface/IComponent';
 import { ComponentServiceService } from 'src/app/services/component-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
+import { UploadFileService } from 'src/app/services/upload-file.service';
 
 @Component({
   selector: 'app-new-component',
@@ -20,10 +21,11 @@ export class NewComponentComponent implements OnInit {
     { value: 'Spendable' },
   ];
   constructor(
-    public dialogRef:    MatDialogRef<NewComponentComponent>,
-    public service:      ComponentServiceService,
-    private route:       Router,
-    public notification: NotificationService
+    public dialogRef:     MatDialogRef<NewComponentComponent>,
+    public service:       ComponentServiceService,
+    private route:        Router,
+    public notification:  NotificationService,
+    public uploadService: UploadFileService
   ) 
   {
 
@@ -47,7 +49,6 @@ export class NewComponentComponent implements OnInit {
   }
   showPicture() {
     if (false) return 'assets/' + this.service.form.get('picture')?.value;
-    console.log(this.photoSelected);
     return this.photoSelected;
   }
   onSubmit() {
@@ -62,15 +63,15 @@ export class NewComponentComponent implements OnInit {
         type: this.service.form.get('type').value,
       };
       this.service.saveComponent(component).subscribe((data) => {
-        this.service.uploadFile(this.file);
+        this.uploadService.uploadFile(this.file);
         this.onSaveSuccess();
         this.onClose();
       });
     }
   }
   onSaveSuccess() {
-    //  window.location.reload();
     this.notification.success('::  Submitted successfully');
+    this.service.chargeComponent.emit();
   }
 
   refresshProductList() {

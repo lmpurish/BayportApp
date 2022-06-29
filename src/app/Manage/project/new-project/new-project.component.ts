@@ -58,12 +58,11 @@ export class NewProjectComponent implements OnInit {
 
   onSaveSuccess(msg:any){
     this.notification.success(msg);
-    window.location.reload();
+    this.services.chargeProject.emit();
   }
   refreshCustomersList(){
     this.customerService.getCustomers().subscribe(data=>{
     this.customerList=data;
-    
     });
   }
 }

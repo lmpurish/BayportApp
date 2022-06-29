@@ -61,7 +61,8 @@ export class MoventComponent implements OnInit {
       this.moventServices.saveMovent(movent).subscribe(date => {
         this.onClose();
         this.services.formMovent.reset();
-        this.notification.success(":: Action Successfully")
+        this.notification.success(":: Action Successfully");
+        this.componentServices.chargeComponent.emit();
       })
     }
   }

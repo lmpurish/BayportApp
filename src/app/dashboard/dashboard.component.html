@@ -1,1 +1,66 @@
-<p>dashboard works!</p>
+<mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="3" [rowspan]="2" >
+        
+        <mat-card class="example-card">
+            <mat-card-title-group>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>Small</mat-card-subtitle>
+                <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+              </mat-card-title-group>
+              <mat-card-content>
+                {{longText}}
+              </mat-card-content>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-title-group>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>Small</mat-card-subtitle>
+                <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+              </mat-card-title-group>
+              <mat-card-content>
+                {{longText}}
+              </mat-card-content>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-title-group>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>Small</mat-card-subtitle>
+                <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+              </mat-card-title-group>
+              <mat-card-content>
+                {{longText}}
+              </mat-card-content>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-title-group>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>Small</mat-card-subtitle>
+                <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+              </mat-card-title-group>
+              <mat-card-content>
+                {{longText}}
+              </mat-card-content>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="7" [style.background]="'lightgreen'">
+        Two
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="5" [style.background]="'lightpink'">
+        Thre
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="5" [style.background]="'#DDBDF1'">
+        Four
+    </mat-grid-tile>
+</mat-grid-list>

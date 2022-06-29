@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IProduct } from '../Interface/IProduct';
@@ -9,18 +9,19 @@ import { IProduct } from '../Interface/IProduct';
 })
 export class ProductService {
 
-  private baseURL = "https://localhost:5001/api/product";
+  private baseURL = "https://localhost:44357/api/product";
   editMode: boolean = false;
-
+  @Output() chargeProduct : EventEmitter<any> = new EventEmitter();
 
   constructor(private http:HttpClient) { }
 
   form: FormGroup = new FormGroup({
-    $key: new FormControl(null),
-    name: new FormControl('', Validators.required),
-    itemCode: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    projectId: new FormControl('', Validators.required)
+    $key:         new FormControl(null),
+    name:         new FormControl('', Validators.required),
+    itemCode:     new FormControl('', Validators.required),
+    description:  new FormControl('', Validators.required),
+    projectId:    new FormControl('', Validators.required),
+    picture:      new FormControl('', Validators.required),
   });
 
   

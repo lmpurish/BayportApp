@@ -21,7 +21,8 @@ import { MatSnackBarModule, MatSnackBarConfig } from '@angular/material/snack-ba
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatGridTileHarness} from '@angular/material/grid-list/testing';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -54,9 +55,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule, 
-    MatRadioModule
-    
-    
+    MatRadioModule,
+    MatProgressBarModule,
     
     
   ],
@@ -84,7 +84,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCardModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressBarModule,
+   
     
   ]
 })

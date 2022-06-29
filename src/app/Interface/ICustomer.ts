@@ -1,5 +1,5 @@
 export class ICustomer{
-    _id?: number;
+    id?: number;
     name: string;
     contact: string;
 }
